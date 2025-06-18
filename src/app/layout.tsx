@@ -1,7 +1,7 @@
 // src/app/layout.tsx  (App Router)
 import "./globals.css";
 import { MutuoProvider } from "@/Context/MutuoContext";
-import ScrollRestorationComp from "@/components/ScrollRestoration";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -9,7 +9,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <MutuoProvider>
           {children}
-          
+          <SpeedInsights />
         </MutuoProvider>
       </body>
 
