@@ -99,7 +99,8 @@ export function CardListaAlternativa({ risultati }: { risultati: Mutuo[] | null 
      <FiltroNormale handleFiltro={handleFiltro}/>
       
       {risultatiNormali.map((mutuo, index) =>{
-        
+        const esistonoTag = mutuo.soloClassiAB || mutuo.consap || mutuo.eta?.maxUnder36 ? true : false
+
         const speseMensiliTot =
         mutuo.incassoRata.importo +
         mutuo.costoGestionePratica.importo +
@@ -121,7 +122,7 @@ export function CardListaAlternativa({ risultati }: { risultati: Mutuo[] | null 
               <div className="flex p-4  ">
                 <div className="flex flex-col flex-1 gap-2">
                   {/* Logo e info banca */}
-                  <div className="flex flex-col lg:flex-row lg:items-center gap-2 min-w-0 flex-1">
+                  <div className={`flex flex-col flex-1  lg:gap-0 ${esistonoTag ? 'gap-2': 'gap-0'}`}>
                     {/* Logo e score mobile */}
                     <div className=" flex items-center  lg:flex-col lg:gap-0 justify-between pt-1">
                       <div className="flex-shrink-0 ">
@@ -263,7 +264,7 @@ export function CardListaAlternativa({ risultati }: { risultati: Mutuo[] | null 
               {(mutuo.spesePerizia ||
                 mutuo.speseIstruttoria ||
                 mutuo.impostaSostitutiva) && (
-                <div className="px-4  text-sm pt-3">
+                <div className="px-4  text-sm pt-1">
                   {/* Costi una tantum */}
                   {(mutuo.spesePerizia ||
                     mutuo.speseIstruttoria ||
@@ -395,7 +396,7 @@ export function CardListaAlternativa({ risultati }: { risultati: Mutuo[] | null 
                   </div>
                   <button
                     onClick={() => handleLink(mutuo)}
-                    className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                    className="text-blue-600 hover:text-blue-700 font-medium transition-colors  focus:border-b-[1px] border-blue-600"
                   >
                     Dettagli →
                   </button>

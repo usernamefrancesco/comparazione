@@ -115,6 +115,7 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
     if (mutuoUnder) return mutuoUnder;
   }
 
+
   return (
     <div className="space-y-3 pt-3">
       <div className=" rounded-xl  mb-6 space-y-4">
@@ -141,6 +142,7 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
         </div>
       </div>
       {listaOrdinata.map((mutuo, index) => {
+          const esistonoTag = mutuo.soloClassiAB || mutuo.consap || mutuo.eta?.maxUnder36 ? true : false
         const scoreColors = getScoreColor(mutuo.score);
         const speseMensiliTot =
           mutuo.incassoRata.importo +
@@ -158,7 +160,7 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
           >
             {/* Header compatto */}
             <div className="flex p-4  lg:px-4 lg:pt-2">
-              <div className="flex flex-col flex-1 gap-2 lg:gap-0">
+              <div className={`flex flex-col flex-1  lg:gap-0 ${esistonoTag ? 'gap-2': 'gap-0'}`}>
                 {/* Logo e info banca */}
                 <div className="flex justify-between items-start lg:items-center gap-4">
                   {/* Sezione sinistra: Logo e info */}
@@ -333,7 +335,7 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
             {(mutuo.spesePerizia ||
               mutuo.speseIstruttoria ||
               mutuo.impostaSostitutiva) && (
-              <div className="px-4  text-sm pt-3">
+              <div className="px-4  text-sm pt-1">
                 {/* Costi una tantum */}
                 {(mutuo.spesePerizia ||
                   mutuo.speseIstruttoria ||
