@@ -99,7 +99,7 @@ export function CardListaAlternativa({ risultati }: { risultati: Mutuo[] | null 
      <FiltroNormale handleFiltro={handleFiltro}/>
       
       {risultatiNormali.map((mutuo, index) =>{
-        const esistonoTag = mutuo.soloClassiAB || mutuo.consap || mutuo.eta?.maxUnder36 ? true : false
+                  const esistonoTag = mutuo.soloClassiAB || mutuo.consap || mutuo.eta?.maxUnder36 ? true : false
 
         const speseMensiliTot =
         mutuo.incassoRata.importo +
@@ -119,10 +119,10 @@ export function CardListaAlternativa({ risultati }: { risultati: Mutuo[] | null 
               } ${inter.className} relative overflow-hidden`}
             >
               {/* Header compatto */}
-              <div className="flex p-4  ">
-                <div className="flex flex-col flex-1 gap-2">
+              <div className={`flex p-4 ${esistonoTag ? 'pb-3': 'pb-2'}`}>
+                <div className={`flex flex-col flex-1   lg:gap-0 ${esistonoTag ? 'gap-2': 'gap-'}`}>
                   {/* Logo e info banca */}
-                  <div className={`flex flex-col flex-1  lg:gap-0 ${esistonoTag ? 'gap-2': 'gap-0'}`}>
+                  <div className="flex flex-col lg:flex-row lg:items-center gap-2 min-w-0 flex-1">
                     {/* Logo e score mobile */}
                     <div className=" flex items-center  lg:flex-col lg:gap-0 justify-between pt-1">
                       <div className="flex-shrink-0 ">

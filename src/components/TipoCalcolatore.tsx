@@ -17,7 +17,7 @@ export default function TipoCalcolatore({
         className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 text-sm transition-colors duration-200 hover:bg-white/50 px-3 py-2 rounded-lg"
       >
         <ArrowLeft className="w-4 h-4" />
-        Torna ai risultati
+        Torna alla home
       </button>
       <div className="relative flex justify-center items-center pt-4 ">
         <div

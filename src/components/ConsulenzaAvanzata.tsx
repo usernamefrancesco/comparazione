@@ -451,6 +451,7 @@ export default function ConsulenzaAvanzata() {
                   name="importoMutuo"
                   value={dati.importoMutuo}
                   onChange={handleChangeNumber}
+                  placeholder="€ 0"
                   className="w-full h-10 px-3 py-2  border border-gray-200 rounded-xl text-sm  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
                 />
               </div>
@@ -511,7 +512,7 @@ export default function ConsulenzaAvanzata() {
 
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700">
-                Classe energetica A, B o C?
+                Classe energetica A, B o C
               </label>
               <DropdownField
                 label="Classe energetica"
@@ -549,6 +550,7 @@ export default function ConsulenzaAvanzata() {
                 name="reddito"
                 value={dati.reddito}
                 onChange={handleChangeNumber}
+                placeholder="€ 0"
                 className="w-full h-10 px-3 py-2  border border-gray-200 rounded-xl text-sm  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
               />
             </div>
@@ -564,13 +566,14 @@ export default function ConsulenzaAvanzata() {
                   setFormData((prev: any) => ({ ...prev, eta: e.target.value }));
 
                 }}
+                placeholder="Es: 25"
                 className="w-full h-10 px-3 py-2  border border-gray-200 rounded-xl text-sm  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
               />
             </div>
 
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700">
-                Isee maggiore di € 40.000?
+                Isee maggiore di € 40.000
               </label>
               <DropdownField
                 label="Isee"

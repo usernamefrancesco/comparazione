@@ -159,7 +159,7 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
             )} ${inter.className} relative overflow-hidden`}
           >
             {/* Header compatto */}
-            <div className="flex p-4  lg:px-4 lg:pt-2">
+            <div className={`flex p-4  lg:px-4 lg:pt-2 ${esistonoTag ? 'pb-3': 'pb-2'}`}>
               <div className={`flex flex-col flex-1  lg:gap-0 ${esistonoTag ? 'gap-2': 'gap-0'}`}>
                 {/* Logo e info banca */}
                 <div className="flex justify-between items-start lg:items-center gap-4">

@@ -641,9 +641,9 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
                     <div className="flex items-center gap-3">
                       {selezionato.assicurazioniObbligatorie
                         .assicurazioneVita ? (
-                        <XCircle className="w-4 h-4  text-green-500" />
+                        <CheckCircle className="w-4 h-4  text-green-500" />
                       ) : (
-                        <CheckCircle className="w-4 h-4  text-red-500" />
+                        <XCircle className="w-4 h-4  text-red-500" />
                       )}
                       <span className="text-sm text-gray-700">
                         <strong>Vita:</strong>{" "}
@@ -758,9 +758,9 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
               <div
                 className={`flex items-center gap-3 `}
               >
-                <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-3">
-                  <Sparkles className="w-5 h-5 text-blue-500" />
-                  Valutazione della pratica
+                <h2 className="text-2xl font-semibold text-gray-800 flex items-center gap-3">
+                  <Sparkles className="w-6 h-6 text-blue-500" />
+                  Valutazione pratica
                 </h2>
                 <ScoreBadge score={selezionato.score} />
               </div>

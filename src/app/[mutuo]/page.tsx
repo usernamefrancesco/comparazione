@@ -13,9 +13,6 @@ import {
   Shield,
   AlertCircle,
   Banknote,
-  TrendingUp,
-  MessageSquare,
-  Sparkles,
   Calculator,
   Award,
   Clock,
@@ -162,6 +159,9 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
     };
     const scoreColors = getScoreColor(selezionato.score);
 
+
+    
+    
     return (
       <div
         className={`inline-flex items-center gap-2 px-2 py-1 rounded-full border-2 ${scoreColors.bg} ${scoreColors.text} ${scoreColors.border} font-bold`}
@@ -639,10 +639,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
                     <div className="flex items-center gap-3">
                       {selezionato.assicurazioniObbligatorie
                         .assicurazioneVita ? (
-                        <XCircle className="w-4 h-4  text-green-500" />
-                      ) : (
-                        <CheckCircle className="w-4 h-4  text-red-500" />
-                      )}
+                          <CheckCircle className="w-4 h-4  text-green-500" />
+                        ) : (
+                          <XCircle className="w-4 h-4  text-red-500" />
+                        )}
                       <span className="text-sm text-gray-700">
                         <strong>Vita:</strong>{" "}
                         {selezionato.assicurazioniObbligatorie.assicurazioneVita

@@ -94,15 +94,15 @@ export default function CalcolaImporto() {
         
       } 
   return (
-    <div className='flex items-center justify-center px-5'>
+    <div className='flex items-center justify-center px-5 mb-6'>
     <div className="w-full max-w-5xl bg-white">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-4">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">🏦 Calcola Importo Mutuo</h1>
         <p className="text-gray-600">Scopri quanto puoi permetterti di spendere</p>
       </div>
   
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Rata mensile */}
         <div className="group">
           <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-3">

@@ -113,7 +113,7 @@ export default function CalcolaRata() {
     <div className="flex items-center justify-center px-5 mb-5">
   <div className="w-full max-w-5xl bg-white">
     {/* Header */}
-    <div className="mb-8">
+    <div className="mb-4">
       <h1 className="text-3xl font-bold text-gray-900 mb-2">
         💰 Calcolatore Mutuo
       </h1>
@@ -122,7 +122,7 @@ export default function CalcolaRata() {
       </p>
     </div>
 
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-3">
       {/* Importo del mutuo */}
       <div className="group">
         <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-3">
@@ -160,7 +160,7 @@ export default function CalcolaRata() {
       </div>
 
       {/* Tasso */}
-      <div className="group">
+      <div className="group mb-4">
         <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-3">
           <span className="text-lg">📊</span>
           Tasso di interesse
