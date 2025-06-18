@@ -69,7 +69,6 @@ export default function CalcolaRata() {
     // Aggiunge sempre il simbolo % all'inizio
     const finalValue = "% " + cleanValue;
 
-    console.log("filtro", finalValue);
 
     setCalcolatore((prev) => ({
       ...prev,
@@ -98,7 +97,6 @@ export default function CalcolaRata() {
   const rata25 = calculateRataMutuo(importoNumero, tassoNumero, 25);
   const rata30 = calculateRataMutuo(importoNumero, tassoNumero, 30);
 
-  console.log("calcolatore1", esempioCalc);
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const result = calculateRataMutuo(importoNumero, tassoNumero, durataNumero);

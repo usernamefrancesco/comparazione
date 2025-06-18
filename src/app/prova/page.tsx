@@ -138,7 +138,6 @@ export default function Gemini2({ params }: PageProps) {
       return "bg-red-100 text-red-800 border-red-200 ring-red-500/20";
     };
 
-    console.log("tasso", selezionato.tassoScelto);
 
     return (
       <div

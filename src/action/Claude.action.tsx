@@ -524,7 +524,6 @@ function calculateCompleteScore(
   // Limita lo score tra 0 e 100
   totalScore = Math.max(0, Math.min(100, totalScore));
 
-  console.log('score totale', totalScore)
 
   return {
     totalScore,
@@ -672,7 +671,6 @@ function calculateCostiExtra(mutuo: Mutuo, importoMutuo: number,costoStimato: {a
 export async function consulenzaAvanzata(dati:  typeConsulenzaAvanzata) {
 
   try {
-    console.log("🔍 Inizio analisi consulenza avanzata");
     // 1. VALIDAZIONE INPUT
     const validation = validateConsulenzaInput(dati);
     if (!validation.isValid) {
@@ -731,7 +729,6 @@ export async function consulenzaAvanzata(dati:  typeConsulenzaAvanzata) {
       try {
         // Calcolo tasso
         const tasso = calculateTasso(mutuo, ltvMutuo, parsedData.durataMutuo);
-        console.log('bancaNome', mutuo.banca)
 
         // Calcolo rata
         const rata = calculateRataMutuo(

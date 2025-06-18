@@ -641,7 +641,7 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
                         .assicurazioneVita ? (
                         <XCircle className="w-4 h-4  text-green-500" />
                       ) : (
-                        <CheckCircle className="w-4 h-4  text-red-50" />
+                        <CheckCircle className="w-4 h-4  text-red-500" />
                       )}
                       <span className="text-sm text-gray-700">
                         <strong>Vita:</strong>{" "}
@@ -792,7 +792,6 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
                   <div className="space-y-6 ">
                     {Object.entries(selezionato.tassiPerLTV).map(
                       ([ltvRange, tassi]) => {
-                        console.log('ltv range1', ltvRange)
                         return (
                         <div
                           key={ltvRange}

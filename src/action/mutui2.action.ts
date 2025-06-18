@@ -45,7 +45,6 @@ function calculateSpeseIstruttoria(
         } else {
           // CORREZIONE PRINCIPALE: logica per i range di importo
           if (importoMutuo >= x.importoMin && importoMutuo <= x.importoMax) {
-            console.log('istruttoria bnl', importoMutuo * x.percentualeApplicata)
             return importoMutuo * x.percentualeApplicata;
           } else{
             continue
@@ -465,7 +464,6 @@ function calculateCostiExtra(
  */
 export async function consulenzaStandard(dati: FormDataBasic) {
   try {
-    console.log("🔍 Inizio analisi consulenza avanzata");
     // 1. VALIDAZIONE INPUT
 
     // 2. PARSING SICURO DEI VALORI

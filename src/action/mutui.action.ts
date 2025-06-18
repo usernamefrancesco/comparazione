@@ -39,7 +39,6 @@ export async function sortLista(listaMutui: Mutuo[], tipologia: string) {
       num1 = a.score;
       num2 = b.score;
 
-      console.log(num1, num2, "score");
 
       if (num1 > num2) {
         return -1;

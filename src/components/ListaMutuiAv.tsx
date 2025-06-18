@@ -465,11 +465,11 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
                 </div>
                 <button
                   onClick={() => handleLink(mutuo)}
-                  className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                  className="text-blue-600 hover:text-blue-700 font-medium transition-colors focus:border-b-[1px] border-blue-600"
                 >
                   Dettagli →
                 </button>
-              </div>
+              </div> 
             </div>
           </div>
         );

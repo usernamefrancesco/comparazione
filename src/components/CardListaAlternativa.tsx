@@ -121,9 +121,10 @@ export function CardListaAlternativa({ risultati }: { risultati: Mutuo[] | null 
               <div className="flex p-4  ">
                 <div className="flex flex-col flex-1 gap-2">
                   {/* Logo e info banca */}
-                  <div className="flex justify-between">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="flex-shrink-0">
+                  <div className="flex flex-col lg:flex-row lg:items-center gap-2 min-w-0 flex-1">
+                    {/* Logo e score mobile */}
+                    <div className=" flex items-center  lg:flex-col lg:gap-0 justify-between pt-1">
+                      <div className="flex-shrink-0 ">
                         <Image
                           src={mutuo.immagineBanca}
                           height={40}
@@ -132,18 +133,19 @@ export function CardListaAlternativa({ risultati }: { risultati: Mutuo[] | null 
                           className="object-contain"
                         />
                       </div>
-                      <div className="min-w-0 flex-1">
-                        <h3 className="font-semibold text-gray-900 leading-tight truncate uppercase">
-                          {mutuo.nomeProdotto}
-                        </h3>
-                        <p className="text-xs text-gray-500 mt-0.5">
-                          {mutuo.banca}
-                        </p>
-                      </div>
+
+                      
                     </div>
-  
-                    {/* score  */}
-                    
+
+                    {/* Info prodotto */}
+                    <div className="min-w-0 flex-1 pt-3 lg:pt-0">
+                      <h3 className="font-semibold text-sm text-gray-900 leading-tight whitespace-normal break-words uppercase">
+                        {mutuo.nomeProdotto}
+                      </h3>
+                      <p className="text-xs text-gray-500 mt-0.5 truncate">
+                        {mutuo.banca}
+                      </p>
+                    </div>
                   </div>
   
                   {/* Badges compatti */}
