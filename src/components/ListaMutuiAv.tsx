@@ -255,7 +255,7 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
                   ) : (
                     <>
                       <p className="text-xs font-medium text-gray-600 mb-0.5">
-                        Rata mensile
+                        Rata
                       </p>
                       <p className="text-lg font-bold text-blue-600 leading-tight">
                         {formatRata(mutuo.rataMensile)}
