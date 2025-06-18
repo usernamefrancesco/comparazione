@@ -207,15 +207,19 @@ export default function ConsulenzaAvanzata() {
     );
   }
 
+  const formatNumber = (num: number): string => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
 
-
-  const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const raw = value.replace(/[^\d]/g, "");
-    const formatted = raw ? "€ " + parseInt(raw).toLocaleString("it-IT") : "";
+    const formatted = raw ? "€ " + formatNumber(parseInt(raw)) : "";
     setDati((prev) => ({ ...prev, [name]: formatted }));
-    setFormData((prev: any) => ({ ...prev, [name]: formatted }))
-  };
+    setFormData((prev: any) => ({ ...prev, [name]: formatted }));
+};
+
+  
 
   
   
@@ -251,9 +255,9 @@ export default function ConsulenzaAvanzata() {
       <button
         type="button"
         onClick={() => setOpenDropdown(openDropdown === name ? null : name)}
-        className="w-full h-10 px-3 py-2 bg-white border border-gray-200 rounded-lg hover:border-gray-300 transition-colors flex items-center justify-between text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        className="w-full h-11 px-3 py-2 bg-white border border-gray-200 rounded-lg hover:border-gray-300 transition-colors flex items-center justify-between text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
       >
-        <span className="text-gray-900 text-sm">{value}</span>
+        <span className="text-gray-900 text-[16px]">{value}</span>
         <ChevronDown
           className={`h-4 w-4 text-gray-400 transition-transform ${
             openDropdown === name ? "rotate-180" : ""
@@ -435,7 +439,7 @@ export default function ConsulenzaAvanzata() {
                 value={dati.valoreImmobile}
                 onChange={handleChangeNumber}
                 placeholder="€ 0"
-                className="w-full h-10 px-3 py-2  border border-gray-200 rounded-xl text-sm  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
+                className="w-full h-11 px-3 py-1  border border-gray-200 rounded-xl text-[16px]  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
               />
             </div>
 
@@ -452,7 +456,7 @@ export default function ConsulenzaAvanzata() {
                   value={dati.importoMutuo}
                   onChange={handleChangeNumber}
                   placeholder="€ 0"
-                  className="w-full h-10 px-3 py-2  border border-gray-200 rounded-xl text-sm  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
+                  className="w-full h-11 px-3 py-2  border border-gray-200 rounded-xl text-[16px]  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
                 />
               </div>
             </div>
@@ -551,7 +555,7 @@ export default function ConsulenzaAvanzata() {
                 value={dati.reddito}
                 onChange={handleChangeNumber}
                 placeholder="€ 0"
-                className="w-full h-10 px-3 py-2  border border-gray-200 rounded-xl text-sm  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
+                className="w-full h-11 px-3 py-2  border border-gray-200 rounded-xl text-[16px]  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
               />
             </div>
 
@@ -567,7 +571,7 @@ export default function ConsulenzaAvanzata() {
 
                 }}
                 placeholder="Es: 25"
-                className="w-full h-10 px-3 py-2  border border-gray-200 rounded-xl text-sm  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
+                className="w-full h-11 px-3 py-2  border border-gray-200 rounded-xl text-[16px]  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
               />
             </div>
 
@@ -599,7 +603,7 @@ export default function ConsulenzaAvanzata() {
                   checked={dati.familiariCarico}
                   onChange={handleFamiliariCaricoToggle}
                 />
-                <span className="ml-3 text-sm text-gray-600">
+                <span className="ml-3 text-[16px] text-gray-600">
                   {dati.familiariCarico ? "Sì" : "No"}
                 </span>
               </div>
@@ -634,7 +638,7 @@ export default function ConsulenzaAvanzata() {
                         e.target.value.replace(/[^\d]/g, "")
                       )
                     }
-                    className="w-full h-10 px-3 py-2  border border-gray-200 rounded-xl text-sm  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
+                    className="w-full h-11 px-3 py-2  border border-gray-200 rounded-xl text-[16px]  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
                     placeholder="Es. 2"
                   />
                 </div>
@@ -674,7 +678,7 @@ export default function ConsulenzaAvanzata() {
                                     e.target.value.replace(/[^\d]/g, "")
                                   )
                                 }
-                                className="w-full h-10 px-3 py-2  border border-gray-200 rounded-xl text-sm  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
+                                className="w-full h-11 px-3 py-2  border border-gray-200 rounded-xl text-[16px]  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
                               />
                             </div>
 
@@ -689,7 +693,7 @@ export default function ConsulenzaAvanzata() {
                                     handlePortatoreRedditoChange(index)
                                   }
                                 />
-                                <span className="ml-3 text-sm text-gray-600">
+                                <span className="ml-3 text-[16px] text-gray-600">
                                   {persona.portatoreReddito ? "Sì" : "No"}
                                 </span>
                               </div>
@@ -733,7 +737,7 @@ export default function ConsulenzaAvanzata() {
                   }))
                 }
                 }
-                className="w-full h-10 px-3 py-2  border border-gray-200 rounded-xl text-sm  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
+                className="w-full h-11 px-3 py-2  border border-gray-200 rounded-xl text-[16px]  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
               >
                 <option value="Tempo indeterminato">
                   Dipendente tempo indeterminato
@@ -756,7 +760,7 @@ export default function ConsulenzaAvanzata() {
                 value={dati.dataAssunzione}
                 onChange={handleData}
                 placeholder="MM/YYYY"
-                className="w-full h-10 px-3 py-2  border border-gray-200 rounded-xl text-sm  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
+                className="w-full h-11 px-3 py-2  border border-gray-200 rounded-xl text-[16px]  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
               />
             </div>
           </div>
@@ -787,7 +791,7 @@ export default function ConsulenzaAvanzata() {
                 }
                 }
               />
-              <span className="text-sm font-medium text-gray-700">
+              <span className="text-[16px] font-medium text-gray-700">
                 Ho finanziamenti in corso
               </span>
             </div>
@@ -803,7 +807,7 @@ export default function ConsulenzaAvanzata() {
                     name="finanziamentiTot"
                     value={dati.finanziamentiTot}
                     onChange={handleChangeNumber}
-                    className="w-full h-10 px-3 py-2 bg-white border border-gray-200 rounded-lg hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm"
+                    className="w-full h-11 px-3 py-2 bg-white border border-gray-200 rounded-lg hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-[16px]"
                   />
                 </div>
 
@@ -817,7 +821,7 @@ export default function ConsulenzaAvanzata() {
                     value={dati.scadenzaFinanziamenti}
                     onChange={handleData}
                     placeholder="MM/YYYY"
-                    className="w-full h-10 px-3 py-2 bg-white border border-gray-200 rounded-lg hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm"
+                    className="w-full h-11 px-3 py-2 bg-white border border-gray-200 rounded-lg hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-[16px]"
                   />
                 </div>
               </div>

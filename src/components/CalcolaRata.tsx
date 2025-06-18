@@ -5,7 +5,7 @@ export default function CalcolaRata() {
   const [calcolatore, setCalcolatore] = useState({
     importo: "€ 100.000",
     durataMutuo: "30",
-    tasso: "% 2.50",
+    tasso: "% 2,50",
     rata: 395.12,
   });
   const [esempioCalc, setEsempioCalc] = useState({
@@ -41,12 +41,18 @@ export default function CalcolaRata() {
     return result;
   }
 
-  const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const raw = value.replace(/[^\d]/g, "");
-    const formatted = raw ? "€ " + parseInt(raw).toLocaleString("it-IT") : "";
-    setCalcolatore((prev) => ({ ...prev, [name]: formatted }));
-  };
+  const formatNumber = (num: number): string => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
+
+
+const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { name, value } = e.target;
+  const raw = value.replace(/[^\d]/g, "");
+  const formatted = raw ? "€ " + formatNumber(parseInt(raw)) : "";
+  setCalcolatore((prev) => ({ ...prev, [name]: formatted }));
+
+}
 
   const handleChangeTasso = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -55,15 +61,15 @@ export default function CalcolaRata() {
     const withoutPercent = value.startsWith("%") ? value.slice(1) : value;
 
     // Rimuove tutto tranne numeri e punti
-    const numbersAndDots = withoutPercent.replace(/[^0-9.]/g, "");
+    const numbersAndDots = withoutPercent.replace(/[^0-9,]/g, "");
 
     // Gestisce al massimo un punto decimale
-    const parts = numbersAndDots.split(".");
+    const parts = numbersAndDots.split(",");
     let cleanValue = parts[0]; // Parte intera
 
     // Se ci sono punti, mantiene solo il primo
     if (parts.length > 1) {
-      cleanValue += "." + parts.slice(1).join(""); // Ricongiunge tutto dopo il primo punto
+      cleanValue += "," + parts.slice(1).join(""); // Ricongiunge tutto dopo il primo punto
     }
 
     // Aggiunge sempre il simbolo % all'inizio
@@ -88,7 +94,10 @@ export default function CalcolaRata() {
       .split("")
       .filter((x) => x !== "%" && x !== " ")
       .join("")
+      .replace(',', '.')
   );
+
+  console.log('tasso', tassoNumero)
   const durataNumero = parseNumericValue(calcolatore.durataMutuo);
 
   const rata10 = calculateRataMutuo(importoNumero, tassoNumero, 10);

@@ -12,13 +12,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="">
-      <head>
-        <script
-          data-goatcounter="https://francescomutui.goatcounter.com/count"
-          async
-          src="https://gc.zgo.at/count.js"
-        ></script>
-      </head>
+      
       <Navbar />
       <div>
         <InputMutui />

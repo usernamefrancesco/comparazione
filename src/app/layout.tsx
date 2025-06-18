@@ -6,6 +6,14 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it">
+      <head>
+        <script
+          data-goatcounter="https://francescomutui.goatcounter.com/count"
+          async
+          src="https://gc.zgo.at/count.js"
+        ></script>
+      </head>
+
       <body>
         <MutuoProvider>
           {children}

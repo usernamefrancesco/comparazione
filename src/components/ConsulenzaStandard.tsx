@@ -16,17 +16,20 @@ export default function ConsulenzaStandard() {
 
 
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const inputRef = useRef(null);
 
-  const anniMutuo = `${consNormale.durataMutuo} anni`;
+  const formatNumber = (num: number): string => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
 
-  
-  const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const raw = value.replace(/[^\d]/g, "");
-    const formatted = raw ? "€ " + parseInt(raw).toLocaleString("it-IT") : "";
+    const formatted = raw ? "€ " + formatNumber(parseInt(raw)) : "";
     setConsNormale((prev: FormDataBasic) => ({ ...prev, [name]: formatted }));
-  };
+
+};
+  
+  
 
   const handleChangeDurata = (e: any) => {
     const raw = e.target.value.replace(/\D/g, "");
