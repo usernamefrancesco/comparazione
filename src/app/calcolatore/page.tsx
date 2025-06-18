@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import TipoCalcolatore from "@/components/TipoCalcolatore";
 import CalcolaRata from "@/components/CalcolaRata";
 import CalcolaImporto from "@/components/CalcolaImporto";
-import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 export default function page() {
   

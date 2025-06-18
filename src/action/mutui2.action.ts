@@ -1,6 +1,6 @@
 "use server";
 
-import { Mutuo, ScoreGenerale, FormDataBasic } from "@/lib/interface";
+import { Mutuo, FormDataBasic } from "@/lib/interface";
 import { listaMutui } from "./listamutui.action";
 import { irs } from "@/irs/irs";
 

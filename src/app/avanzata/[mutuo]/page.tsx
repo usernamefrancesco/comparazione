@@ -13,8 +13,6 @@ import {
   Shield,
   AlertCircle,
   Banknote,
-  TrendingUp,
-  MessageSquare,
   Sparkles,
   Calculator,
   Award,
