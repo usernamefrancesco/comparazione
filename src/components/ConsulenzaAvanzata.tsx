@@ -20,7 +20,6 @@ import { useMutuo } from "@/Context/MutuoContext";
 import { consulenzaAvanzata } from "@/action/Claude.action";
 import { ListaMutuiAv } from "./ListaMutuiAv";
 import Disclamair from "./Disclamair";
-import Image from "next/image";
 import { Inter } from "next/font/google";
 // Dati iniziali di default
 const datiIniziali: typeConsulenzaAvanzata = {
@@ -66,10 +65,7 @@ export default function ConsulenzaAvanzata() {
   const [dati, setDati] = useState<typeConsulenzaAvanzata>(datiIniziali);
 
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [risultati, setRisultati] = useState<Mutuo[]>([]);
-  const inputRef = useRef(null);
 
-  const anniMutuo = `${dati.durataMutuo} anni`;
 
 
   // PRIMO USEEFFECT: Recupera i dati dal sessionStorage al mount
@@ -145,19 +141,59 @@ export default function ConsulenzaAvanzata() {
   }, [dati.eta, dati.familiariCarico, dati.personeCarico]);
   useEffect(() => {
     if (!isInitialized) return;
-
+  
     async function ListaMutuiFirsClick() {
-      if (risultati.length === 0) {
+      try {
         const result = await consulenzaAvanzata(dati);
-
-
-        console.log('result', result)
-        setRisultatiRicerca(result.risultati);
-        setScoreMedio(result.scoreGenerale)
-        
-
+  
+        // Check if result is an array (empty results case)
+        if (Array.isArray(result)) {
+          setRisultatiRicerca([]);
+          return;
+        }
+  
+        // Check if result has the expected structure
+        if (result && 'risultati' in result) {
+          setRisultatiRicerca(result.risultati);
+          setScoreMedio(result.scoreGenerale);
+        } else {
+          // Handle unexpected result structure
+          setRisultatiRicerca([]);
+        }
+      } catch (error) {
+        console.error('Error in ListaMutuiFirsClick:', error);
+        setRisultatiRicerca([]);
       }
     }
+  
+    ListaMutuiFirsClick();
+  }, [isInitialized]);
+  
+  // Alternative approach using type guards
+  function hasRisultati(result: any): result is { risultati: any[]; scoreGenerale: any } {
+    return result && typeof result === 'object' && 'risultati' in result;
+  }
+  
+  // Using the type guard:
+  useEffect(() => {
+    if (!isInitialized) return;
+  
+    async function ListaMutuiFirsClick() {
+      try {
+        const result = await consulenzaAvanzata(dati);
+  
+        if (hasRisultati(result)) {
+          setRisultatiRicerca(result.risultati);
+          setScoreMedio(result.scoreGenerale);
+        } else {
+          setRisultatiRicerca([]);
+        }
+      } catch (error) {
+        console.error('Error in ListaMutuiFirsClick:', error);
+        setRisultatiRicerca([]);
+      }
+    }
+  
     ListaMutuiFirsClick();
   }, [isInitialized]);
 
@@ -171,14 +207,7 @@ export default function ConsulenzaAvanzata() {
     );
   }
 
-  const handleClickOrFocus = () => {
-    const input = inputRef.current as HTMLInputElement | null;
-if (input) {
-  // qui input è trattato come HTMLInputElement
-  const pos = input.value.length - 5;
-  input.setSelectionRange(pos, pos);
-}
-  };
+
 
   const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -188,22 +217,8 @@ if (input) {
     setFormData((prev: any) => ({ ...prev, [name]: formatted }))
   };
 
-  const handleStandardNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const raw = value.replace(/[^\d]/g, "");
-    const formatted = raw ? parseInt(raw).toLocaleString("it-IT") : "";
-    setDati((prev) => ({ ...prev, [name]: formatted }));
-    setFormData((prev: any) => ({ ...prev, [name]: formatted }))
-
-  };
-
-  const handleChangeDurata = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value.replace(/\D/g, "");
-    const formatted = raw ? `${raw}` : "";
-    setDati((prev) => ({ ...prev, durataMutuo: formatted }));
-    setFormData((prev: any) => ({ ...prev, durataMutuo: formatted }));
-
-  };
+  
+  
 
   const handleData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -375,10 +390,20 @@ if (input) {
     e.preventDefault();
     const result = await consulenzaAvanzata(dati);
 
-        
-        console.log('result', result)
+      // Check if result is an array (empty results case)
+      if (Array.isArray(result)) {
+        setRisultatiRicerca([]);
+        return;
+      }
+
+      // Check if result has the expected structure
+      if (result && 'risultati' in result) {
         setRisultatiRicerca(result.risultati);
-        setScoreMedio(result.scoreGenerale)
+        setScoreMedio(result.scoreGenerale);
+      } else {
+        // Handle unexpected result structure
+        setRisultatiRicerca([]);
+      }
 
   };
 
@@ -431,18 +456,21 @@ if (input) {
               </div>
             </div>
 
+            
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700">
                 Durata del mutuo
               </label>
-              <input
-                ref={inputRef}
-                type="text"
-                value={anniMutuo}
-                onChange={handleChangeDurata}
-                onClick={handleClickOrFocus}
-                onFocus={handleClickOrFocus}
-                className="w-full h-10 px-3 py-2  border border-gray-200 rounded-xl text-sm  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
+              <DropdownField
+                label="Durata del mutuo"
+                value={`${dati.durataMutuo} anni`}
+                options={["30", "25", "20", "15", '10']}
+                onChange={(value: string) =>{
+                  setDati((prev) => ({ ...prev, durataMutuo: value }))
+                  setFormData((prev: any) => ({ ...prev, durataMutuo: value }))}
+
+                }
+                name="durataMutuo"
               />
             </div>
 

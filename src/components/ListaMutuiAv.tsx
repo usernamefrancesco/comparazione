@@ -22,16 +22,15 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
 
   useEffect(() => {
     async function handleMediaSort() {
-      if(!risultati){
-        console.warn('errore handleMediaSort lista av')
-        return
+      if (!risultati) {
+        console.warn("errore handleMediaSort lista av");
+        return;
       }
       const nuovaLista = await sortLista(risultati, filtro); // ok usare server action
 
-      if(!nuovaLista){
-        console.warn('Mutui lista av non va')
-      }else{
-        
+      if (!nuovaLista) {
+        console.warn("Mutui lista av non va");
+      } else {
       }
       setListaOrdinata(nuovaLista!);
     }
@@ -103,13 +102,17 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
     return { bg: "bg-red-50", text: "text-red-700", border: "border-red-200" };
   };
 
-  function colorsMutuo(mutuo: Mutuo){
-    const classiAlte = mutuo.soloClassiAB ? "border-l-4 border-l-green-500 border-r border-t border-b border-gray-200" : ''
-    const mutuoUnder = (mutuo.eta.maxUnder36 && !mutuo.soloClassiAB) ? "border-l-4 border-l-purple-500 border-r border-t border-b border-gray-200" : ''
+  function colorsMutuo(mutuo: Mutuo) {
+    const classiAlte = mutuo.soloClassiAB
+      ? "border-l-4 border-l-green-500 border-r border-t border-b border-gray-200"
+      : "";
+    const mutuoUnder =
+      mutuo.eta.maxUnder36 && !mutuo.soloClassiAB
+        ? "border-l-4 border-l-purple-500 border-r border-t border-b border-gray-200"
+        : "";
 
-    if(classiAlte)return classiAlte
+    if (classiAlte) return classiAlte;
     if (mutuoUnder) return mutuoUnder;
-
   }
 
   return (
@@ -149,39 +152,61 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
         return (
           <div
             key={`${mutuo.banca}-${mutuo.nomeProdotto}-${index}`}
-            className={`bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border ${
-              colorsMutuo(mutuo)
-             
-            } ${inter.className} relative overflow-hidden`}
+            className={`bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border ${colorsMutuo(
+              mutuo
+            )} ${inter.className} relative overflow-hidden`}
           >
             {/* Header compatto */}
-            <div className="flex p-4 pt-2 pb-3">
-              <div className="flex flex-col flex-1">
+            <div className="flex p-4  lg:px-4 lg:pt-2">
+              <div className="flex flex-col flex-1 gap-2 lg:gap-0">
                 {/* Logo e info banca */}
-                <div className="flex justify-between">
-                  <div className="flex items-center gap-2 min-w-0">
-                    <div className="flex-shrink-0">
-                      <Image
-                        src={mutuo.immagineBanca}
-                        height={40}
-                        width={120}
-                        alt={`Logo ${mutuo.banca}`}
-                        className=" object-contain"
-                      />
+                <div className="flex justify-between items-start lg:items-center gap-4">
+                  {/* Sezione sinistra: Logo e info */}
+                  <div className="flex flex-col lg:flex-row lg:items-center gap-2 min-w-0 flex-1">
+                    {/* Logo e score mobile */}
+                    <div className=" flex items-center  lg:flex-col lg:gap-0 justify-between pt-1">
+                      <div className="flex-shrink-0 ">
+                        <Image
+                          src={mutuo.immagineBanca}
+                          height={40}
+                          width={120}
+                          alt={`Logo ${mutuo.banca}`}
+                          className="object-contain"
+                        />
+                      </div>
+
+                      {/* Score mobile - visibile solo su mobile */}
+                      <div
+                        className={`${scoreColors.bg} ${scoreColors.border} absolute right-2 top-1 border-2 rounded-lg px-3 py-1.5 text-center flex-shrink-0 lg:hidden`}
+                      >
+                        <div className="text-xs font-medium text-gray-600">
+                          Score
+                        </div>
+                        <div
+                          className={`text-sm font-bold ${scoreColors.text} leading-tight`}
+                        >
+                          {mutuo.score}
+                          <span className="text-xs text-gray-500 font-normal">
+                            /100
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-semibold text-gray-900 leading-tight truncate uppercase">
+
+                    {/* Info prodotto */}
+                    <div className="min-w-0 flex-1 pt-3 lg:pt-0">
+                      <h3 className="font-semibold text-sm text-gray-900 leading-tight whitespace-normal break-words uppercase">
                         {mutuo.nomeProdotto}
                       </h3>
-                      <p className="text-xs text-gray-500 mt-0.5">
+                      <p className="text-xs text-gray-500 mt-0.5 truncate">
                         {mutuo.banca}
                       </p>
                     </div>
                   </div>
 
-                  {/* score  */}
+                  {/* Score desktop - visibile solo su desktop */}
                   <div
-                    className={`${scoreColors.bg} ${scoreColors.border} border-2 rounded-lg px-4 py-2 text-center min-w-[80px]`}
+                    className={`${scoreColors.bg} ${scoreColors.border} border-2 rounded-lg px-4 py-2 text-center min-w-[80px] hidden lg:block flex-shrink-0`}
                   >
                     <div className="text-xs font-medium text-gray-600 mb-1">
                       Score
@@ -194,17 +219,17 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
                 </div>
 
                 {/* Badges compatti */}
-                <div className="flex items-end gap-2 flex-shrink-0 pb-1">
+                <div className="flex items-center gap-2 flex-shrink-0">
                   {mutuo.soloClassiAB && (
                     <span className="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-medium">
                       🌱 Green
                     </span>
                   )}
-                      {mutuo.eta?.maxUnder36 && (
-                        <span className="bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded-full font-medium">
-                          👥 Under 36
-                        </span>
-                      )}
+                  {mutuo.eta?.maxUnder36 && (
+                    <span className="bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded-full font-medium">
+                      👥 Under 36
+                    </span>
+                  )}
                   {mutuo.consap && (
                     <span className="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-medium">
                       🏛️ Consap

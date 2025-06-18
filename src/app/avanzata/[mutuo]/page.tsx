@@ -178,11 +178,11 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
 
   return (
     <div className="min-h-screen ">
-      <div className="max-w-5xl mx-auto py-8 px-8">
+      <div className="max-w-5xl mx-auto py-8 px-5">
         {/* Back Button */}
         <button
           onClick={() => router.back()}
-          className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 text-sm mb-6 transition-colors duration-200 hover:bg-white/50 px-3 py-2 rounded-lg"
+          className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 text-sm mb-6 transition-colors duration-200 hover:bg-white/50  rounded-lg"
         >
           <ArrowLeft className="w-4 h-4" />
           Torna ai risultati
@@ -266,7 +266,7 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
 
           {/* Key Metrics Section */}
           <div className=" ">
-            <div className="text-center mb-4 pt-6">
+            <div className="text-center mb-4 ">
               <h2 className="text-2xl font-bold text-slate-800 mb-2">
                 Ecco la tua offerta
               </h2>

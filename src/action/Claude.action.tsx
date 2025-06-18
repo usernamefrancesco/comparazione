@@ -150,17 +150,17 @@ function calculateTasso(
   const listaTassi = Object.keys(mutuo.tassiPerLTV);
   const aggiungiIrs = mutuo.irs ? irs[durataMutuo] : 0;
 
-
-
-
   for (let x of listaTassi) {
     const numero1 = Number(x.slice(0, 5));
     const numero2 = Number(x.slice(6));
 
     if (ltvMutuo >= numero1 && ltvMutuo <= numero2) {
-      return Number(
-        (mutuo.tassiPerLTV[x][durataMutuo] + aggiungiIrs).toFixed(4)
-      );
+      const tassiForRange = mutuo.tassiPerLTV[x as keyof typeof mutuo.tassiPerLTV];
+      if (tassiForRange) {
+        return Number(
+          (tassiForRange[durataMutuo] + aggiungiIrs).toFixed(4)
+        );
+      }
     }
   }
 

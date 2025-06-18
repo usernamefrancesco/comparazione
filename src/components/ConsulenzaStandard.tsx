@@ -20,13 +20,7 @@ export default function ConsulenzaStandard() {
 
   const anniMutuo = `${consNormale.durataMutuo} anni`;
 
-  const handleClickOrFocus = () => {
-    const input = inputRef.current;
-    if (input) {
-      const pos = input.value.length - 5;
-      input.setSelectionRange(pos, pos);
-    }
-  };
+  
   const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const raw = value.replace(/[^\d]/g, "");
@@ -48,7 +42,7 @@ export default function ConsulenzaStandard() {
     setConsNormale((prev: FormDataBasic) => ({ ...prev, [field]: value }));
     setActiveDropdown(null);
   };
-
+  const durataMutuo = ['30', '25', '20', '15', '10']
   const tipoTassoOptions = ["Fisso", "Variabile", "Misto", "Tutte le tipologie"];
   const classeEnergeticaOptions = ['Si', 'No', "Non lo so"];
 
@@ -162,8 +156,9 @@ export default function ConsulenzaStandard() {
             </div>
 
             {/* Durata Mutuo */}
+          
             <div className="group relative">
-              <div className="flex items-center space-x-3 mb-2">
+            <div className="flex items-center space-x-3 mb-2">
                 <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
                   <Calendar className="w-4 h-4 text-purple-600" />
                 </div>
@@ -172,16 +167,28 @@ export default function ConsulenzaStandard() {
                 </label>
               </div>
               <div className="relative">
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={anniMutuo}
-                  onChange={handleChangeDurata}
-                  onClick={handleClickOrFocus}
-                  onFocus={handleClickOrFocus}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
-                  placeholder="30 anni"
-                />
+                <button
+                  type="button"
+                  onClick={() => toggleDropdown('durataMutuo')}
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none flex items-center justify-between"
+                >
+                  <span>{consNormale.durataMutuo} anni</span>
+                  <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${activeDropdown === 'durataMutuo' ? 'rotate-180' : ''}`} />
+                </button>
+                {activeDropdown === 'durataMutuo' && (
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-50 overflow-hidden">
+                    {durataMutuo.map((option) => (
+                      <button
+                        key={option}
+                        type="button"
+                        onClick={() => selectOption('durataMutuo', option)}
+                        className="w-full px-4 py-3 text-left hover:bg-gray-50 text-gray-900 transition-colors duration-150"
+                      >
+                        {option}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 

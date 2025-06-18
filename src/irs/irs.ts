@@ -1,6 +1,6 @@
 
 
-export const irs = {
+export const irs: any = {
         10: 2.56,  // 11/06/2025: 2.56% :contentReference[oaicite:1]{index=1}
         11: 2.52,  // 11/06/2025: 2.60% :contentReference[oaicite:2]{index=2}
         12: 2.64,  // 11/06/2025: 2.64% :contentReference[oaicite:3]{index=3}

@@ -107,7 +107,7 @@ function calculatePolizze(
   };
 }
 
-function parseNumericValue(value: string): number {
+ function parseNumericValue(value: string): number {
   const cleaned = value.replace(/[^\d]/g, "");
   const result = Number(cleaned);
   if (isNaN(result) || result < 0) {
@@ -173,9 +173,12 @@ function calculateTasso(
     const numero2 = Number(x.slice(6));
 
     if (ltvMutuo >= numero1 && ltvMutuo <= numero2) {
-      return Number(
-        (mutuo.tassiPerLTV[x][durataMutuo] + aggiungiIrs).toFixed(4)
-      );
+      const tassiForRange = mutuo.tassiPerLTV[x as keyof typeof mutuo.tassiPerLTV];
+      if (tassiForRange) {
+        return Number(
+          (tassiForRange[durataMutuo] + aggiungiIrs).toFixed(4)
+        );
+      }
     }
   }
 
@@ -183,6 +186,7 @@ function calculateTasso(
     `Tasso non trovato per LTV ${ltvMutuo}% e durata ${durataMutuo} anni`
   );
 }
+
 // CALCOLA IMPORTO DA RATA
 function calculateImportoMutuo(
   rata: number,
@@ -200,7 +204,7 @@ function calculateImportoMutuo(
 /**
  * Calcola la rata mensile del mutuo
  */
-function calculateRataMutuo(
+ function calculateRataMutuo(
   importoMutuo: number,
   tasso: number,
   durataMutuo: number
