@@ -207,7 +207,7 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
         </div>
         <div className="flex items-baseline gap-2">
           <span className="text-4xl font-bold text-green-900">
-            € {calcolatore.rata}
+            € {calcolatore.rata.toFixed(2).replace('.', ',')}
           </span>
           <span className="text-green-700 font-medium">al mese</span>
         </div>

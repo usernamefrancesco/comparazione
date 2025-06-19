@@ -61,10 +61,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
   };
   function formatNumeroDex(numb: number) {
     if(numb> 1){
-      return numb.toFixed(0)
+      return numb.toFixed(0).replace('.', ',')
     }else{
 
-      return numb.toFixed(2);
+      return numb.toFixed(2).replace('.', ',');
     }
   }
 
@@ -76,7 +76,7 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
   };
 
   const formatTasso = (tasso: number) => {
-    return tasso < 1 ? `${(tasso * 100).toFixed(2)}%` : `${tasso.toFixed(2)}%`;
+    return tasso < 1 ? `${(tasso * 100).toFixed(2).replace('.', ',')}%` : `${tasso.toFixed(2).replace('.', ',')}%`;
   };
 
   useEffect(() => {

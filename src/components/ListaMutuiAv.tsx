@@ -52,8 +52,8 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
   const formatTasso = (tasso: number | string): string => {
     if (typeof tasso === "number") {
       return tasso < 1
-        ? `${(tasso * 100).toFixed(2)}%`
-        : `${tasso.toFixed(2)}%`;
+        ? `${(tasso * 100).toFixed(2).replace('.', ',')}%`
+        : `${tasso.toFixed(2).replace('.', ',')}%`;
     }
     return typeof tasso === "string" ? `${tasso}%` : `${tasso}%`;
   };

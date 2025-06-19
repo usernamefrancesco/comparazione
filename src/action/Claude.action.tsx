@@ -491,7 +491,8 @@ function calculateCompleteScore(
   }
 
   // 6. Score DTI
-  const redditoDisponibile = parsedData.reddito - parsedData.finanziamenti;
+  const rataFinanziamento = (dati.finanziamentiBool ? parsedData.finanzimenti : 0)
+  const redditoDisponibile = parsedData.reddito - rataFinanziamento;
   const dti =
     redditoDisponibile > 0
       ? Number(((rata / redditoDisponibile) * 100).toFixed(2))
