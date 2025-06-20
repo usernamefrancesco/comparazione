@@ -168,7 +168,6 @@ export interface FormDataBasic {
   importoMutuo: string;
   durataMutuo: string;
   tipoTasso: string;
-  provinciaImmobile: string;
   reddito: string;
   eta: boolean;
   classeEnergetica: string;
@@ -180,7 +179,6 @@ export interface typeAbbandonata {
   importoMutuo: string;
   durataMutuo: string;
   tipoTasso: string;
-  provinciaImmobile: string;
   reddito: string;
   eta: string;
   classeEnergetica: string;
@@ -204,7 +202,6 @@ export interface typeConsulenzaAvanzata {
   importoMutuo: string;
   durataMutuo: string;
   tipoTasso: string;
-  provinciaImmobile: string;
   reddito: string;
   eta: string;
   classeEnergetica: string;

@@ -72,6 +72,8 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
     return tasso < 1 ? `${(tasso * 100).toFixed(2).replace('.', ',')}%` : `${tasso.toFixed(2).replace('.', ',')}%`;
   };
 
+
+  
  
 
   useEffect(() => {

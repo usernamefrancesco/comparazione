@@ -8,28 +8,24 @@ import {
   User,
   Briefcase,
   CreditCard,
-  
 } from "lucide-react";
 import { getFasciaEta, provincieItaliane } from "@/lib/utils";
 import { sogliePoverta2023 } from "@/lib/utils";
-import {
-  typeConsulenzaAvanzata,
-  Mutuo
-} from "@/lib/interface";
+import { typeConsulenzaAvanzata, Mutuo } from "@/lib/interface";
 import { useMutuo } from "@/Context/MutuoContext";
 import { consulenzaAvanzata } from "@/action/Claude.action";
 import { ListaMutuiAv } from "./ListaMutuiAv";
 import Disclamair from "./Disclamair";
 import { Inter } from "next/font/google";
+import { listaMutui } from "@/action/listamutui.action";
 // Dati iniziali di default
 const datiIniziali: typeConsulenzaAvanzata = {
   valoreImmobile: "€ 100.000",
   importoMutuo: "€ 80.000",
   durataMutuo: "30",
   tipoTasso: "Fisso",
-  provinciaImmobile: "Milano (MI)",
   reddito: "€ 2.000",
-  isee: 'Non lo so',
+  isee: "Non lo so",
   eta: "25",
   classeEnergetica: "Non lo so",
   familiariCarico: false,
@@ -60,13 +56,15 @@ export default function ConsulenzaAvanzata() {
     risultatiRicerca,
   } = useMutuo();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const [isInitialized, setIsInitialized] = useState(false);
 
   const [dati, setDati] = useState<typeConsulenzaAvanzata>(datiIniziali);
 
   const [openDropdown, setOpenDropdown] = useState(null);
 
-
+  const mutuiLista = useRef<HTMLDivElement | null>(null);
 
   // PRIMO USEEFFECT: Recupera i dati dal sessionStorage al mount
   useEffect(() => {
@@ -110,23 +108,31 @@ export default function ConsulenzaAvanzata() {
     let totale = 0;
     const fasciaRichiedente = getFasciaEta(dati.eta);
     if (fasciaRichiedente !== null) {
-      totale += sogliePoverta2023[
-        dati.regione as keyof typeof sogliePoverta2023
-      ][fasciaRichiedente] || 0;    } else {
-        console.warn('errore con la regione')
+      totale +=
+        sogliePoverta2023[dati.regione as keyof typeof sogliePoverta2023][
+          fasciaRichiedente
+        ] || 0;
+    } else {
+      console.warn("errore con la regione");
       // gestisci il caso “fascia mancante” (default, errore, 0…)
     }
-    
-    if (dati.familiariCarico && Array.isArray(dati.personeCarico) && dati.personeCarico.length > 0) {
+
+    if (
+      dati.familiariCarico &&
+      Array.isArray(dati.personeCarico) &&
+      dati.personeCarico.length > 0
+    ) {
       // ← CORRETTO
       dati.personeCarico.forEach((etaStr) => {
         if (!etaStr.portatoreReddito) {
           const fascia = getFasciaEta(etaStr.eta);
           if (fascia !== null) {
-            totale += sogliePoverta2023[
-              dati.regione as keyof typeof sogliePoverta2023
-            ][fascia] || 0;    } else {
-              console.warn('errore con la regione 2')
+            totale +=
+              sogliePoverta2023[dati.regione as keyof typeof sogliePoverta2023][
+                fascia
+              ] || 0;
+          } else {
+            console.warn("errore con la regione 2");
             // gestisci il caso “fascia mancante” (default, errore, 0…)
           }
         }
@@ -141,19 +147,19 @@ export default function ConsulenzaAvanzata() {
   }, [dati.eta, dati.familiariCarico, dati.personeCarico]);
   useEffect(() => {
     if (!isInitialized) return;
-  
+
     async function ListaMutuiFirsClick() {
       try {
         const result = await consulenzaAvanzata(dati);
-  
+
         // Check if result is an array (empty results case)
         if (Array.isArray(result)) {
           setRisultatiRicerca([]);
           return;
         }
-  
+
         // Check if result has the expected structure
-        if (result && 'risultati' in result) {
+        if (result && "risultati" in result) {
           setRisultatiRicerca(result.risultati);
           setScoreMedio(result.scoreGenerale);
         } else {
@@ -161,27 +167,29 @@ export default function ConsulenzaAvanzata() {
           setRisultatiRicerca([]);
         }
       } catch (error) {
-        console.error('Error in ListaMutuiFirsClick:', error);
+        console.error("Error in ListaMutuiFirsClick:", error);
         setRisultatiRicerca([]);
       }
     }
-  
+
     ListaMutuiFirsClick();
   }, [isInitialized]);
-  
+
   // Alternative approach using type guards
-  function hasRisultati(result: any): result is { risultati: any[]; scoreGenerale: any } {
-    return result && typeof result === 'object' && 'risultati' in result;
+  function hasRisultati(
+    result: any
+  ): result is { risultati: any[]; scoreGenerale: any } {
+    return result && typeof result === "object" && "risultati" in result;
   }
-  
+
   // Using the type guard:
   useEffect(() => {
     if (!isInitialized) return;
-  
+
     async function ListaMutuiFirsClick() {
       try {
         const result = await consulenzaAvanzata(dati);
-  
+
         if (hasRisultati(result)) {
           setRisultatiRicerca(result.risultati);
           setScoreMedio(result.scoreGenerale);
@@ -189,11 +197,11 @@ export default function ConsulenzaAvanzata() {
           setRisultatiRicerca([]);
         }
       } catch (error) {
-        console.error('Error in ListaMutuiFirsClick:', error);
+        console.error("Error in ListaMutuiFirsClick:", error);
         setRisultatiRicerca([]);
       }
     }
-  
+
     ListaMutuiFirsClick();
   }, [isInitialized]);
 
@@ -209,20 +217,15 @@ export default function ConsulenzaAvanzata() {
 
   const formatNumber = (num: number): string => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-};
+  };
 
-const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const raw = value.replace(/[^\d]/g, "");
     const formatted = raw ? "€ " + formatNumber(parseInt(raw)) : "";
     setDati((prev) => ({ ...prev, [name]: formatted }));
     setFormData((prev: any) => ({ ...prev, [name]: formatted }));
-};
-
-  
-
-  
-  
+  };
 
   const handleData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -235,7 +238,6 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     }
     setDati((prev) => ({ ...prev, [name]: formatted }));
     setFormData((prev: any) => ({ ...prev, [name]: formatted }));
-
   };
 
   const clearNumber = (number: string) => {
@@ -392,33 +394,38 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const result = await consulenzaAvanzata(dati);
 
-      // Check if result is an array (empty results case)
-      if (Array.isArray(result)) {
+    if (isLoading) return;
+    setIsLoading(true);
+
+    try {
+      const result = await consulenzaAvanzata(dati);
+
+      if (Array.isArray(result) || !result || !("risultati" in result)) {
         setRisultatiRicerca([]);
-        return;
-      }
-
-      // Check if result has the expected structure
-      if (result && 'risultati' in result) {
+      } else {
         setRisultatiRicerca(result.risultati);
         setScoreMedio(result.scoreGenerale);
-      } else {
-        // Handle unexpected result structure
-        setRisultatiRicerca([]);
+        setTimeout(() => {
+          mutuiLista.current?.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }, 10)
       }
-
+    } catch (error) {
+      console.error("Errore durante la ricerca:", error);
+      setRisultatiRicerca([]);
+    } finally {
+      setIsLoading(false); // ✅ Solo il loading qui
+    }
   };
-
 
   return (
     <div className="max-w-5xl mx-auto   w-full bg-white">
-      
       {/* Header */}
-      
 
-      <div className="space-y-8">
+      <form className="space-y-8" onSubmit={handleSubmit}>
         {/* Sezione Immobile */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 mb-4">
@@ -461,7 +468,6 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
               </div>
             </div>
 
-            
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700">
                 Durata del mutuo
@@ -469,12 +475,11 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
               <DropdownField
                 label="Durata del mutuo"
                 value={`${dati.durataMutuo} anni`}
-                options={["30", "25", "20", "15", '10']}
-                onChange={(value: string) =>{
-                  setDati((prev) => ({ ...prev, durataMutuo: value }))
-                  setFormData((prev: any) => ({ ...prev, durataMutuo: value }))}
-
-                }
+                options={["30", "25", "20", "15", "10"]}
+                onChange={(value: string) => {
+                  setDati((prev) => ({ ...prev, durataMutuo: value }));
+                  setFormData((prev: any) => ({ ...prev, durataMutuo: value }));
+                }}
                 name="durataMutuo"
               />
             </div>
@@ -487,30 +492,11 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
                 label="Tipo di tasso"
                 value={dati.tipoTasso}
                 options={["Fisso", "Variabile", "Misto", "Tutte le tipologie"]}
-                onChange={(value: string) =>{
-                  setDati((prev) => ({ ...prev, tipoTasso: value }))
-                  setFormData((prev: any) => ({ ...prev, tipoTasso: value }))}
-
-                }
+                onChange={(value: string) => {
+                  setDati((prev) => ({ ...prev, tipoTasso: value }));
+                  setFormData((prev: any) => ({ ...prev, tipoTasso: value }));
+                }}
                 name="tipoTasso"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
-                Provincia dell'immobile
-              </label>
-              <DropdownField
-                label="Provincia"
-                value={dati.provinciaImmobile}
-                options={provincieItaliane}
-                onChange={(value: string) =>{
-                  setDati((prev) => ({ ...prev, provinciaImmobile: value }))
-                  setFormData((prev: any) => ({ ...prev, provinciaImmobile: value }))
-
-                }
-                }
-                name="provinciaImmobile"
               />
             </div>
 
@@ -522,13 +508,13 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
                 label="Classe energetica"
                 value={dati.classeEnergetica}
                 options={["Si", "No", "Non lo so"]}
-                onChange={(value: string) =>{
-                  setDati((prev) => ({ ...prev, classeEnergetica: value }))
-                  setFormData((prev: any) => ({ ...prev, classeEnergetica: value }))
-
-                }
-                  
-                }
+                onChange={(value: string) => {
+                  setDati((prev) => ({ ...prev, classeEnergetica: value }));
+                  setFormData((prev: any) => ({
+                    ...prev,
+                    classeEnergetica: value,
+                  }));
+                }}
                 name="classeEnergetica"
               />
             </div>
@@ -567,8 +553,10 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
                 value={dati.eta}
                 onChange={(e) => {
                   setDati((prev) => ({ ...prev, eta: e.target.value }));
-                  setFormData((prev: any) => ({ ...prev, eta: e.target.value }));
-
+                  setFormData((prev: any) => ({
+                    ...prev,
+                    eta: e.target.value,
+                  }));
                 }}
                 placeholder="Es: 25"
                 className="w-full h-11 px-3 py-2  border border-gray-200 rounded-xl text-[16px]  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
@@ -583,13 +571,10 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
                 label="Isee"
                 value={dati.isee}
                 options={["Si", "No", "Non lo so"]}
-                onChange={(value: 'Non lo so' | 'No' | 'Si') =>{
-                  setDati((prev) => ({ ...prev, isee: value }))
-                  setFormData((prev: any) => ({ ...prev, isee: value }))
-
-                }
-                  
-                }
+                onChange={(value: "Non lo so" | "No" | "Si") => {
+                  setDati((prev) => ({ ...prev, isee: value }));
+                  setFormData((prev: any) => ({ ...prev, isee: value }));
+                }}
                 name="isee"
               />
             </div>
@@ -608,8 +593,6 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
                 </span>
               </div>
             </div>
-
-            
           </div>
         </div>
 
@@ -725,18 +708,16 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
               <select
                 name="tipoContratto"
                 value={dati.tipoContratto}
-                onChange={(e) =>{
-
+                onChange={(e) => {
                   setDati((prev) => ({
                     ...prev,
                     tipoContratto: e.target.value,
-                  }))
+                  }));
                   setFormData((prev: any) => ({
                     ...prev,
                     tipoContratto: e.target.value,
-                  }))
-                }
-                }
+                  }));
+                }}
                 className="w-full h-11 px-3 py-2  border border-gray-200 rounded-xl text-[16px]  text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
               >
                 <option value="Tempo indeterminato">
@@ -779,17 +760,16 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
             <div className="flex items-center gap-3">
               <ToggleField
                 checked={dati.finanziamentiBool}
-                onChange={() =>{
+                onChange={() => {
                   setDati((prev) => ({
                     ...prev,
                     finanziamentiBool: !prev.finanziamentiBool,
-                  }))
+                  }));
                   setFormData((prev: any) => ({
                     ...prev,
                     finanziamentiBool: !prev.finanziamentiBool,
-                  }))
-                }
-                }
+                  }));
+                }}
               />
               <span className="text-[16px] font-medium text-gray-700">
                 Ho finanziamenti in corso
@@ -830,22 +810,69 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
         </div>
 
         {/* Submit Button */}
-        <div className="pt- flex flex-col gap-1">
+        <div className="pt-4 flex flex-col gap-4">
           <button
-            onClick={handleSubmit}
+            
+          
             type="submit"
-            className="w-full bg-orange-400 hover:bg-orange-500 text-white font-medium py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 flex items-center justify-center gap-2"
+            disabled={isLoading}
+            className={`
+    w-full 
+    ${
+      isLoading
+        ? "bg-orange-500 cursor-not-allowed"
+        : "bg-orange-400 hover:bg-orange-500 active:bg-orange-600"
+    }
+    text-white 
+    font-medium 
+    py-4 
+    px-6 
+    rounded-xl 
+    transition-all 
+    duration-200
+    focus:outline-none 
+    focus:ring-4 
+    focus:ring-orange-200 
+    touch-manipulation
+    select-none
+    flex 
+    items-center 
+    justify-center 
+    gap-3
+    text-lg
+    min-h-[48px]
+    ${isLoading ? "" : "active:scale-95"}
+  `}
+            style={{
+              WebkitTapHighlightColor: "transparent",
+            }}
           >
-            <Calculator className="h-5 w-5" />
-            Cerca il mutuo
+            {isLoading ? (
+              <>
+                <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+                <span>Ricerca in corso...</span>
+              </>
+            ) : (
+              <>
+                <Calculator className="h-5 w-5 flex-shrink-0" />
+                <span>Cerca il mutuo</span>
+              </>
+            )}
           </button>
+
           <div className="flex justify-center pt-2 text-gray-500">
-          <p className="text-xs max-w-11/12 text-center">I dati inseriti non verranno salvati e saranno utilizzati solo per il calcolo in tempo reale. La ricerca è anonima e non comporta alcuna segnalazione a CRIF o altri sistemi di informazioni creditizie.</p>
+            <p className="text-xs max-w-[90%] text-center leading-relaxed">
+              I dati inseriti non verranno salvati e saranno utilizzati solo per
+              il calcolo in tempo reale. La ricerca è anonima e non comporta
+              alcuna segnalazione a CRIF o altri sistemi di informazioni
+              creditizie.
+            </p>
+          </div>
         </div>
-        </div>
-        
+      </form>
+      <div id="mutui-lista" ref={mutuiLista}>
+        <ListaMutuiAv risultati={risultatiRicerca} />
       </div>
-      <ListaMutuiAv risultati={risultatiRicerca} />
       <Disclamair />
     </div>
   );
