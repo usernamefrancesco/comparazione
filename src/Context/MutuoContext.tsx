@@ -68,7 +68,6 @@ export function MutuoProvider({ children }: { children: ReactNode }) {
     importoMutuo: "€ 70.000",
     durataMutuo: "30",
     tipoTasso: "Fisso",
-    provinciaImmobile: 'Milano (MI)',
     reddito: "€ 2.000",
     eta: true,
     classeEnergetica: "Non lo so",

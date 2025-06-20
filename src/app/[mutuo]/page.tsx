@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect, use} from "react";
+import React, { useEffect, use } from "react";
 import Disclaimer from "@/components/Disclamair";
 import { getTassoIrs } from "@/lib/utils";
 import { trovaMutuo } from "@/action/mutui2.action";
@@ -33,10 +33,10 @@ interface PageProps {
   }>;
 }
 
-const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
+const MutuoRedesignPart1 = ({ params }: PageProps) => {
   const { mutuoId } = use(params);
   // Dati di esempio (simili a quelli del tuo componente)
-  const { selezionato , setSelezionato} = useMutuo();
+  const { selezionato, setSelezionato } = useMutuo();
   const router = useRouter();
 
   const formatCurrency = (amount: number) => {
@@ -47,17 +47,33 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
       maximumFractionDigits: 2,
     }).format(amount);
   };
+
+  function calcolaMutuo(
+    rata: number,
+    tassoNumero: number,
+    durataMutuo: number
+  ) {
+    const n = durataMutuo * 12;
+    const i = tassoNumero / 12 / 100;
+    const pow = Math.pow(1 + i, n);
+
+    const capitale = rata * ((pow - 1) / (i * pow));
+    const montante = rata * n;
+    const interessi = montante - capitale;
+
+    return { capitale, montante, interessi };
+  }
+
   const formatLTV = (range: string) => {
-    const primoNum = range.slice(0,2)
-    const secondoNum = range.slice(6,8)
-    return `${primoNum}-${secondoNum}`
+    const primoNum = range.slice(0, 2);
+    const secondoNum = range.slice(6, 8);
+    return `${primoNum}-${secondoNum}`;
   };
   function formatNumeroDex(numb: number) {
-    if(numb> 1){
-      return numb.toFixed(0).replace('.', ',')
-    }else{
-
-      return numb.toFixed(2).replace('.', ',');
+    if (numb > 1) {
+      return numb.toFixed(0).replace(".", ",");
+    } else {
+      return numb.toFixed(2).replace(".", ",");
     }
   }
 
@@ -69,12 +85,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
   };
 
   const formatTasso = (tasso: number) => {
-    return tasso < 1 ? `${(tasso * 100).toFixed(2).replace('.', ',')}%` : `${tasso.toFixed(2).replace('.', ',')}%`;
+    return tasso < 1
+      ? `${(tasso * 100).toFixed(2).replace(".", ",")}%`
+      : `${tasso.toFixed(2).replace(".", ",")}%`;
   };
-
-
-  
- 
 
   useEffect(() => {
     // Chiave per il sessionStorage basata sull'ID del mutuo
@@ -117,7 +131,6 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
     }
   }, [selezionato, mutuoId, setSelezionato]);
 
-
   if (!selezionato) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
@@ -128,6 +141,12 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
       </div>
     );
   }
+
+  const calcolatore = calcolaMutuo(
+    selezionato.rataMensile,
+    selezionato.tassoScelto,
+    selezionato.durataAnni
+  );
 
   const speseMensiliTot =
     selezionato.incassoRata.importo +
@@ -161,9 +180,6 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
     };
     const scoreColors = getScoreColor(selezionato.score);
 
-
-    
-    
     return (
       <div
         className={`inline-flex items-center gap-2 px-2 py-1 rounded-full border-2 ${scoreColors.bg} ${scoreColors.text} ${scoreColors.border} font-bold`}
@@ -388,6 +404,69 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
                     <div className="text-sm text-slate-600 mb-1">TAEG</div>
                     <div className="text-xs text-slate-500">
                       Tasso annuo effettivo globale
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200/50">
+                    <div className="text-3xl font-bold text-slate-800 mb-2">
+                      {formatCurrency(calcolatore.interessi)}
+                    </div>
+                    <div className="text-sm text-slate-600 mb-1"> Interessi totali</div>
+                    <div className="text-xs text-slate-500">
+                      Il totale degl'interessi bancari da pagare
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-5 bg-gray-50 border border-gray-200 rounded-xl">
+                  <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <span>📊</span>
+                    Ripartizione del pagamento
+                  </h3>
+
+                  <div className="relative">
+                    {/* Barra */}
+                    <div className="h-6 bg-gray-200 rounded-full overflow-hidden flex">
+                      <div
+                        className="bg-blue-500 flex items-center justify-center text-white text-xs font-medium"
+                        style={{
+                          width: `${
+                            (calcolatore.capitale / calcolatore.montante) * 100
+                          }%`,
+                        }}
+                      >
+                        {Math.round(
+                          (calcolatore.capitale / calcolatore.montante) * 100
+                        )}
+                        %
+                      </div>
+                      <div
+                        className="bg-orange-500 flex items-center justify-center text-white text-xs font-medium"
+                        style={{
+                          width: `${
+                            (calcolatore.interessi / calcolatore.montante) * 100
+                          }%`,
+                        }}
+                      >
+                        {Math.round(
+                          (calcolatore.interessi / calcolatore.montante) * 100
+                        )}
+                        %
+                      </div>
+                    </div>
+
+                    {/* Legenda */}
+                    <div className="flex justify-between mt-3 text-sm">
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                        <span className="text-gray-700">Capitale</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                        <span className="text-gray-700">Interessi</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -641,10 +720,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
                     <div className="flex items-center gap-3">
                       {selezionato.assicurazioniObbligatorie
                         .assicurazioneVita ? (
-                          <CheckCircle className="w-4 h-4  text-green-500" />
-                        ) : (
-                          <XCircle className="w-4 h-4  text-red-500" />
-                        )}
+                        <CheckCircle className="w-4 h-4  text-green-500" />
+                      ) : (
+                        <XCircle className="w-4 h-4  text-red-500" />
+                      )}
                       <span className="text-sm text-gray-700">
                         <strong>Vita:</strong>{" "}
                         {selezionato.assicurazioniObbligatorie.assicurazioneVita
@@ -795,36 +874,37 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
                     {Object.entries(selezionato.tassiPerLTV).map(
                       ([ltvRange, tassi]) => {
                         return (
-                        <div
-                          key={ltvRange}
-                          className="border border-gray-200 rounded-2xl overflow-hidden"
-                        >
-                          <div className="bg-gray-50 p-4 border-b border-gray-200">
-                            <h3 className="font-bold text-gray-900">
-                              LTV: {formatLTV(ltvRange)}%
-                            </h3>
-                          </div>
-                          <div className="p-4">
-                            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                              {Object.entries(tassi).map(([anni, tasso]) => (
-                                <div
-                                  key={anni}
-                                  className="text-center p-3 bg-blue-50 rounded-xl border border-blue-100"
-                                >
-                                  <div className="text-sm text-gray-600 mb-1">
-                                    {anni} anni
+                          <div
+                            key={ltvRange}
+                            className="border border-gray-200 rounded-2xl overflow-hidden"
+                          >
+                            <div className="bg-gray-50 p-4 border-b border-gray-200">
+                              <h3 className="font-bold text-gray-900">
+                                LTV: {formatLTV(ltvRange)}%
+                              </h3>
+                            </div>
+                            <div className="p-4">
+                              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                                {Object.entries(tassi).map(([anni, tasso]) => (
+                                  <div
+                                    key={anni}
+                                    className="text-center p-3 bg-blue-50 rounded-xl border border-blue-100"
+                                  >
+                                    <div className="text-sm text-gray-600 mb-1">
+                                      {anni} anni
+                                    </div>
+                                    <div className="font-bold text-blue-700">
+                                      {selezionato.irs
+                                        ? getTassoIrs(tasso, anni)
+                                        : formatTasso(tasso)}
+                                    </div>
                                   </div>
-                                  <div className="font-bold text-blue-700">
-                                    {selezionato.irs
-                                      ? getTassoIrs(tasso, anni)
-                                      : formatTasso(tasso)}
-                                  </div>
-                                </div>
-                              ))}
+                                ))}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      )}
+                        );
+                      }
                     )}
                   </div>
                 </div>
