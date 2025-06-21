@@ -515,7 +515,7 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
                     {/* Legenda migliorata */}
                     <div className="grid grid-cols-2 gap-4">
                       <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-200/50">
-                        <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"></div>
+                        <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"></div>
                         <div>
                           <span className="text-sm font-medium text-gray-900">Capitale</span>
                           <div className="text-xs text-gray-600">
@@ -524,7 +524,7 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
                         </div>
                       </div>
                       <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-200/50">
-                        <div className="w-4 h-4 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full"></div>
+                        <div className="w-3 h-3 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full"></div>
                         <div>
                           <span className="text-sm font-medium text-gray-900">Interessi</span>
                           <div className="text-xs text-gray-600">
