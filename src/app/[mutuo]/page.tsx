@@ -57,7 +57,8 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
     const i = tassoNumero / 12 / 100;
     const pow = Math.pow(1 + i, n);
 
-    const capitale = rata * ((pow - 1) / (i * pow));
+    if(!selezionato)return;
+    const capitale = selezionato.importoMutuo;
     const montante = rata * n;
     const interessi = montante - capitale;
 
@@ -131,6 +132,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
     }
   }, [selezionato, mutuoId, setSelezionato]);
 
+  
+
+  
+
   if (!selezionato) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
@@ -141,13 +146,14 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
       </div>
     );
   }
-
   const calcolatore = calcolaMutuo(
     selezionato.rataMensile,
     selezionato.tassoScelto,
     selezionato.durataAnni
   );
+  if(!calcolatore)return;
 
+  console.log('calcolatore', calcolatore)
   const speseMensiliTot =
     selezionato.incassoRata.importo +
     selezionato.costoGestionePratica.importo +
@@ -408,29 +414,83 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
                   </div>
                 </div>
 
-                <div className="text-center">
-                  <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200/50">
-                    <div className="text-3xl font-bold text-slate-800 mb-2">
-                      {formatCurrency(calcolatore.interessi)}
+               
+
+                
+              </div>
+            </div>
+
+
+            <div className="bg-white rounded-3xl p-8 border border-slate-200/50 mt-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-bold text-slate-800 mb-2 flex items-center justify-center gap-3">
+                    <span>🏗️</span>
+                    Struttura del mutuo
+                  </h3>
+                  <p className="text-slate-600">
+                    La composizione del tuo finanziamento
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                  {/* Capitale richiesto */}
+                  <div className="text-center">
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 shadow-sm border border-blue-200/50">
+                      <div className="text-xs text-blue-600 font-medium uppercase tracking-wide mb-2">
+                        Capitale richiesto
+                      </div>
+                      <div className="text-2xl font-bold text-blue-800 mb-1">
+                        {formatCurrency(selezionato.importoMutuo)}
+                      </div>
+                      <div className="text-sm text-blue-600">
+                        Importo finanziato
+                      </div>
                     </div>
-                    <div className="text-sm text-slate-600 mb-1"> Interessi totali</div>
-                    <div className="text-xs text-slate-500">
-                      Il totale degl'interessi bancari da pagare
+                  </div>
+
+                  {/* Interessi totali */}
+                  <div className="text-center">
+                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 shadow-sm border border-orange-200/50">
+                      <div className="text-xs text-orange-600 font-medium uppercase tracking-wide mb-2">
+                        Interessi totali
+                      </div>
+                      <div className="text-2xl font-bold text-orange-800 mb-1">
+                        {formatCurrency(calcolatore.interessi)}
+                      </div>
+                      <div className="text-sm text-orange-600">
+                        Costo del denaro
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Montante */}
+                  <div className="text-center">
+                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 shadow-sm border border-purple-200/50">
+                      <div className="text-xs text-purple-600 font-medium uppercase tracking-wide mb-2">
+                        Montante
+                      </div>
+                      <div className="text-2xl font-bold text-purple-800 mb-1">
+                        {formatCurrency(calcolatore.montante)}
+                      </div>
+                      <div className="text-sm text-purple-600">
+                        Totale da restituire
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-5 bg-gray-50 border border-gray-200 rounded-xl">
-                  <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                {/* Ripartizione del pagamento */}
+                <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-6 border border-gray-200/50">
+                  <h4 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
                     <span>📊</span>
                     Ripartizione del pagamento
-                  </h3>
+                  </h4>
 
                   <div className="relative">
-                    {/* Barra */}
-                    <div className="h-6 bg-gray-200 rounded-full overflow-hidden flex">
+                    {/* Barra di ripartizione */}
+                    <div className="h-8 bg-gray-200 rounded-full overflow-hidden flex mb-4">
                       <div
-                        className="bg-blue-500 flex items-center justify-center text-white text-xs font-medium"
+                        className="bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center text-white text-sm font-medium transition-all duration-500"
                         style={{
                           width: `${
                             (calcolatore.capitale / calcolatore.montante) * 100
@@ -439,11 +499,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
                       >
                         {Math.round(
                           (calcolatore.capitale / calcolatore.montante) * 100
-                        )}
-                        %
+                        )}%
                       </div>
                       <div
-                        className="bg-orange-500 flex items-center justify-center text-white text-xs font-medium"
+                        className="bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center text-white text-sm font-medium transition-all duration-500"
                         style={{
                           width: `${
                             (calcolatore.interessi / calcolatore.montante) * 100
@@ -452,28 +511,40 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
                       >
                         {Math.round(
                           (calcolatore.interessi / calcolatore.montante) * 100
-                        )}
-                        %
+                        )}%
                       </div>
                     </div>
 
-                    {/* Legenda */}
-                    <div className="flex justify-between mt-3 text-sm">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                        <span className="text-gray-700">Capitale</span>
+                    {/* Legenda migliorata */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-200/50">
+                        <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"></div>
+                        <div>
+                          <span className="text-sm font-medium text-gray-900">Capitale</span>
+                          <div className="text-xs text-gray-600">
+                            {formatCurrency(calcolatore.capitale)}
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                        <span className="text-gray-700">Interessi</span>
+                      <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-200/50">
+                        <div className="w-4 h-4 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full"></div>
+                        <div>
+                          <span className="text-sm font-medium text-gray-900">Interessi</span>
+                          <div className="text-xs text-gray-600">
+                            {formatCurrency(calcolatore.interessi)}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+
+
           </div>
         </div>
+
+
         <div className="space-y-8 ">
           {/* Costs Breakdown */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -754,7 +825,7 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
               </div>
             )}
 
-            <div className="max-w-4xl mx-auto pt-10">
+            <div className="max-w-4xl  pt-10">
               {/* Header minimalista */}
               <div className="mb-8">
                 <div className="flex items-center gap-3 mb-2">

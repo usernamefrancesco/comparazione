@@ -140,7 +140,7 @@ export default function ConsulenzaStandard() {
 
         {/* Form */}
         <form className="bg-white rounded-3xl  " onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6">
             {/* Valore Immobile */}
             <div className="group relative">
               <div className="flex items-center space-x-3 mb-2">
@@ -289,7 +289,7 @@ export default function ConsulenzaStandard() {
             </div>
 
             {/* Età */}
-            <div className="group relative">
+            <div className="group relative md:hidden">
               <div className="flex items-center space-x-3 mb-2">
                 <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
                   <Calendar className="w-4 h-4 text-indigo-600" />
@@ -401,6 +401,39 @@ export default function ConsulenzaStandard() {
                 )}
               </div>
             </div>
+
+
+            <div className="group relative hidden md:block">
+              <div className="flex items-center space-x-3 mb-2">
+                <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
+                  <Calendar className="w-4 h-4 text-indigo-600" />
+                </div>
+                <label className="text-sm font-medium text-gray-700">
+                  Ho meno di 36 anni
+                </label>
+              </div>
+              <div className="relative pt-3">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setConsNormale((prev: FormDataBasic) => ({
+                      ...prev,
+                      eta: !prev.eta,
+                    }))
+                  }
+                  className={` relative inline-flex h-7 w-13 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-blue-100 ${
+                    consNormale.eta ? "bg-blue-600" : "bg-gray-300"
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-5 w-5 transform rounded-full bg-white shadow-lg transition-transform duration-200 ${
+                      consNormale.eta ? "translate-x-7" : "translate-x-1"
+                    }`}
+                  />
+                </button>
+              </div>
+            </div>
+            
           </div>
 
           {/* Submit Button */}
