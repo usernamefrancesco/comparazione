@@ -3,6 +3,7 @@ import React, { useEffect, use } from "react";
 import Disclaimer from "@/components/Disclamair";
 import { getTassoIrs } from "@/lib/utils";
 import { trovaMutuo } from "@/action/mutui2.action";
+import { InfoPopup, useInfoPopup, InfoButton } from "@/components/PopUpInfo/UseInfo";
 import {
   ArrowLeft,
   Star,
@@ -38,6 +39,8 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
   // Dati di esempio (simili a quelli del tuo componente)
   const { selezionato, setSelezionato } = useMutuo();
   const router = useRouter();
+  const { popupState, showPopup, hidePopup , isMobile} = useInfoPopup();
+
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat("it-IT", {
@@ -198,6 +201,13 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
 
   return (
     <div className="min-h-screen ">
+      <InfoPopup
+      isMobile={isMobile}
+        isOpen={popupState.isOpen}
+        info={popupState.info}
+        position={popupState.position}
+        onClose={hidePopup}
+      />
       <div className="max-w-5xl mx-auto py-8 px-5">
         {/* Back Button */}
         <button
@@ -377,8 +387,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
                     <div className="text-3xl font-bold text-slate-800 mb-2">
                       {formatCurrency(selezionato.rataTotale)}
                     </div>
-                    <div className="text-sm text-slate-600 mb-1">
+                    <div className="text-sm text-slate-600 mb-1 flex justify-center items-center">
                       Rata totale mensile
+                      <InfoButton field="rataTotale" onShow={showPopup} />
+
                     </div>
                     <div className="text-xs text-slate-500">
                       Include le spese aggiuntive
@@ -392,8 +404,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
                     <div className="text-3xl font-bold text-slate-800 mb-2">
                       {formatCurrency(selezionato.totaliCostiExtra)}
                     </div>
-                    <div className="text-sm text-slate-600 mb-1">
+                    <div className="text-sm text-slate-600 mb-1 flex justify-center items-center">
                       Costi iniziali
+                      <InfoButton field="costiIniziali" onShow={showPopup} />
+
                     </div>
                     <div className="text-xs text-slate-500">
                       Da pagare all'inizio
@@ -407,7 +421,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
                     <div className="text-3xl font-bold text-slate-800 mb-2">
                       {formatTasso(selezionato.taeg)}
                     </div>
-                    <div className="text-sm text-slate-600 mb-1">TAEG</div>
+                    <div className="text-sm text-slate-600 mb-1 flex justify-center items-center">TAEG
+                    <InfoButton field="taeg" onShow={showPopup} />
+
+                    </div>
                     <div className="text-xs text-slate-500">
                       Tasso annuo effettivo globale
                     </div>
@@ -435,7 +452,7 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                   {/* Capitale richiesto */}
                   <div className="text-center">
-                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 shadow-sm border border-blue-200/50">
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200/50 hover:shadow-lg transition-all duration-300">
                       <div className="text-xs text-blue-600 font-medium uppercase tracking-wide mb-2">
                         Capitale richiesto
                       </div>
@@ -450,9 +467,11 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
 
                   {/* Interessi totali */}
                   <div className="text-center">
-                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 shadow-sm border border-orange-200/50">
-                      <div className="text-xs text-orange-600 font-medium uppercase tracking-wide mb-2">
+                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 border border-orange-200/50 hover:shadow-lg transition-all duration-300">
+                      <div className="text-xs text-orange-600 font-medium uppercase tracking-wide mb-2 flex justify-center items-center">
                         Interessi totali
+                        <InfoButton field="interessiTotali" onShow={showPopup} />
+
                       </div>
                       <div className="text-2xl font-bold text-orange-800 mb-1">
                         {formatCurrency(calcolatore.interessi)}
@@ -465,7 +484,7 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
 
                   {/* Montante */}
                   <div className="text-center">
-                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 shadow-sm border border-purple-200/50">
+                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border border-purple-200/50 hover:shadow-lg transition-all duration-300">
                       <div className="text-xs text-purple-600 font-medium uppercase tracking-wide mb-2">
                         Montante
                       </div>
@@ -558,8 +577,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
               <div className="space-y-4 lg:flex-grow">
                 {selezionato.spesePerizia && (
                   <div className="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
-                    <span className="text-gray-700 font-medium">
+                    <span className="text-gray-700 font-medium flex justify-center items-center">
                       Spese perizia
+                      <InfoButton field="spesePerizia" onShow={showPopup} />
+
                     </span>
                     <span
                       className={`font-bold ${
@@ -576,8 +597,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
                 )}
                 {selezionato.speseIstruttoria && (
                   <div className="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
-                    <span className="text-gray-700 font-medium">
+                    <span className="text-gray-700 font-medium flex justify-center items-center">
                       Spese istruttoria
+                      <InfoButton field="speseIstruttoria" onShow={showPopup} />
+
                     </span>
                     <span
                       className={`font-bold ${
@@ -594,8 +617,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
                 )}
                 {selezionato.impostaSostitutiva && (
                   <div className="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
-                    <span className="text-gray-700 font-medium">
+                    <span className="text-gray-700 font-medium flex justify-center items-center">
                       Imposta sostitutiva
+                      <InfoButton field="impostaSostitutiva" onShow={showPopup} />
+
                     </span>
                     <span className="font-bold text-gray-900">
                       {formatCurrency(selezionato.impostaSostitutiva.importo)}
@@ -603,8 +628,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
                   </div>
                 )}
                 <div className="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
-                  <span className="text-gray-700 font-medium">
+                  <span className="text-gray-700 font-medium flex justify-center items-center">
                     Assicurazione incendio
+                    <InfoButton field="assicurazioneIncendio" onShow={showPopup} />
+
                   </span>
                   <span className="font-bold text-gray-900">
                     {formatCurrency(
@@ -637,8 +664,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
 
               <div className="space-y-4 lg:flex-grow">
                 <div className="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
-                  <span className="text-gray-700 font-medium">
+                  <span className="text-gray-700 font-medium flex justify-center items-center">
                     Incasso rata
+                    <InfoButton field="incassoRata" onShow={showPopup} />
+
                   </span>
                   <span className="font-bold text-gray-900">
                     {formatCurrency(selezionato.incassoRata.importo)}
@@ -646,8 +675,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
                 </div>
 
                 <div className="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
-                  <span className="text-gray-700 font-medium">
+                  <span className="text-gray-700 font-medium flex justify-center items-center">
                     Gestione pratica
+                    <InfoButton field="gestionePratica" onShow={showPopup} />
+
                   </span>
                   <span
                     className={`font-bold ${
@@ -664,8 +695,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
 
                 {selezionato.assicurazioniObbligatorie.assicurazioneVita && (
                   <div className="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
-                    <span className="text-gray-700 font-medium">
+                    <span className="text-gray-700 font-medium flex items-center justify-center">
                       Assicurazione vita
+                      <InfoButton field="assicurazioneVita" onShow={showPopup} />
+
                     </span>
                     <span className="font-bold text-gray-900">
                       {selezionato.assicurazioniObbligatorie
@@ -681,8 +714,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
 
                 {selezionato.altriTipiSpese.importo !== 0 && (
                   <div className="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
-                    <span className="text-gray-700 font-medium">
+                    <span className="text-gray-700 font-medium flex justify-center items-center">
                       Altri costi
+                      <InfoButton field="assicurazioneVita" onShow={showPopup} />
+
                     </span>
                     <span className="font-bold text-gray-900">
                       {formatCurrency(selezionato.altriTipiSpese.importo)}
@@ -832,8 +867,11 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
                   <div className="w-5 h-5 rounded flex items-center justify-center">
                     <ChartPie className="w-6 h-6 text-blue-600" />
                   </div>
-                  <h2 className="text-2xl font-semibold text-gray-900">
+                  <h2 className="text-2xl font-semibold text-gray-900 flex justify-center items-center">
                     Analisi dell'offerta
+                    <InfoButton field="analisiOfferta" onShow={showPopup} />
+
+
                   </h2>
                 </div>
               </div>

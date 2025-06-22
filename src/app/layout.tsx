@@ -8,7 +8,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="it">
       <head>
         <script
-          data-goatcounter="https://francescomutui.goatcounter.com/count"
+          data-goatcounter="https://francescomutui.goatcounter.com/"
           async
           src="https://gc.zgo.at/count.js"
         ></script>

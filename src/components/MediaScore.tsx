@@ -1,5 +1,7 @@
 import { mediaScore } from "@/action/mutui.action";
 import { Mutuo, ScoreGenerale } from "@/lib/interface";
+import { InfoPopup, useInfoPopup, InfoButton } from "./PopUpInfo/UseInfo";
+
 import React from "react";
 
 export default function MediaScore({
@@ -16,6 +18,8 @@ export default function MediaScore({
       </div>
     );
   }
+  const { popupState, showPopup, hidePopup, isMobile } = useInfoPopup();
+
 
   function handleK(importo: number) {
     return Math.round(importo / 1000) + "K";
@@ -48,12 +52,23 @@ export default function MediaScore({
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-6 py-4  w-full">
+      <InfoPopup
+        isMobile={isMobile}
+        isOpen={popupState.isOpen}
+        info={popupState.info}
+        position={popupState.position}
+        onClose={hidePopup}
+      />
       {/* Header con score */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-sm font-medium text-gray-900 mb-1">
+          <h2 className="text-sm font-medium text-gray-900 mb-1 flex items-center">
             Valutazione Creditizia
+            <InfoButton field="valutazioneCreditizia" onShow={showPopup} />
+
           </h2>
+
+         
           <p className="text-xs text-gray-500">
             Analisi della sostenibilità del mutuo
           </p>

@@ -4,6 +4,8 @@ import { Mutuo, ScoreGenerale } from "@/lib/interface";
 import MediaScore from "./MediaScore";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { InfoPopup, useInfoPopup, InfoButton } from "./PopUpInfo/UseInfo";
+
 import { Inter } from "next/font/google";
 
 import { useRouter } from "next/navigation"; // CAMBIATO: usa next/navigation per App Router
@@ -19,6 +21,8 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
   const [listaOrdinata, setListaOrdinata] = useState<Mutuo[] | null>(null);
   const [filtro, setFiltro] = useState("rata");
   const router = useRouter();
+  const { popupState, showPopup, hidePopup, isMobile } = useInfoPopup();
+
 
   useEffect(() => {
     async function handleMediaSort() {
@@ -118,6 +122,13 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
 
   return (
     <div className="space-y-3 pt-3">
+      <InfoPopup
+        isMobile={isMobile}
+        isOpen={popupState.isOpen}
+        info={popupState.info}
+        position={popupState.position}
+        onClose={hidePopup}
+      />
       <div className=" rounded-xl  mb-6 space-y-4">
         {/* Header section */}
         <div className="flex items-center justify-between">
@@ -256,8 +267,9 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
                     </>
                   ) : (
                     <>
-                      <p className="text-xs font-medium text-gray-600 mb-0.5">
+                      <p className=" flex justify-center items-center text-xs font-medium text-gray-600 mb-0.5">
                         Rata
+                        <InfoButton field="rata" onShow={showPopup} />
                       </p>
                       <p className="text-lg font-bold text-blue-600 leading-tight">
                         {formatRata(mutuo.rataMensile)}
@@ -267,24 +279,29 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
                 </div>
 
                 <div className="bg-green-50 p-2.5 rounded-md text-center">
-                  <p className="text-xs font-medium text-gray-600 mb-0.5">
-                    Tasso fisso
-                  </p>
-                  <p className="text-lg font-bold text-green-600 leading-tight">
-                    {formatTasso(mutuo.tassoScelto)}
-                  </p>
-                </div>
-
-                {mutuo.taeg && (
-                  <div className="bg-orange-50 p-2.5 rounded-md text-center">
-                    <p className="text-xs font-medium text-gray-600 mb-0.5">
-                      TAEG
+                    <p className=" flex justify-center items-center text-xs font-medium text-gray-600 mb-0.5">
+                      <span className="hidden sm:inline">Tasso fisso</span>
+                      <span className="sm:hidden flex items-center justify-center ">
+                        Tasso
+                      </span>
+                      <InfoButton field="tasso" onShow={showPopup} />
                     </p>
-                    <p className="text-lg font-bold text-orange-600 leading-tight">
-                      {formatTasso(mutuo.taeg)}
+                    <p className="text-lg font-bold text-green-600 leading-tight">
+                      {formatTasso(mutuo.tassoScelto)}
                     </p>
                   </div>
-                )}
+
+                  {mutuo.taeg && (
+                    <div className="bg-orange-50 p-2.5 rounded-md text-center">
+                      <p className="text-xs flex items-center justify-center font-medium text-gray-600 mb-0.5">
+                        TAEG
+                        <InfoButton field="taeg" onShow={showPopup} />
+                      </p>
+                      <p className="text-lg font-bold text-orange-600 leading-tight">
+                        {formatTasso(mutuo.taeg)}
+                      </p>
+                    </div>
+                  )}
               </div>
             </div>
 
@@ -342,7 +359,11 @@ export function ListaMutuiAv({ risultati }: { risultati: Mutuo[] | null }) {
                   mutuo.impostaSostitutiva) && (
                   <div className="mb-3">
                     <h4 className="font-semibold text-gray-800  flex justify-between">
-                      <span>Costi iniziali:</span>
+                    <div className="flex items-center">
+                          <span>Costi iniziali </span>
+
+                          <InfoButton field="costiMisti" onShow={showPopup} />
+                        </div>
                       <span className="text-blue-600">
                         +
                         {formatRata(

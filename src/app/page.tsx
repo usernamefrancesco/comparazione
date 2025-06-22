@@ -5,7 +5,7 @@ import { Metadata } from "next";
  
 export const metadata: Metadata = {
   title: 'Comparatore Mutui',
-  description: 'Trova facilmente il mutuo giusto per te.',
+  description: 'Confronta i migliori mutui online: scopri tassi, rate, costi e promozioni per trovare il mutuo più adatto alle tue esigenze in pochi click.',
 };
 
 

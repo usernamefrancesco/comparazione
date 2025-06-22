@@ -330,8 +330,8 @@ interface ScoreResult {
   cons: string[];
 }
 
-/**
- * Calcola lo score basato su LTV
+
+ /* Calcola lo score basato su LTV
  */
 function calculateLTVScore(ltv: number): ScoreResult {
   const pros: string[] = [];
@@ -436,7 +436,6 @@ function calculateAgeScore(eta: number): ScoreResult {
     if (eta > 70) cons.push("Età elevata");
   } else if (eta >= 35 && eta <= 60) {
     score += 10;
-    pros.push("Età ottimale");
   }
 
   return { score, pros, cons };
