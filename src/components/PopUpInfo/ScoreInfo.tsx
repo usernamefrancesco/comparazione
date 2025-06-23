@@ -202,25 +202,25 @@ export const ScoreInfoPop: React.FC<InfoPopupProps> = ({
             {info.content.split("|").map((x, index) => {
               if (index === info.content.split("|").length - 1) {
                 return (
-                  <>
+                  
                     <p
                       className="text-xs text-gray-600 leading-relaxed"
                       key={index}
                     >
                       {x}
                     </p>
-                  </>
+                  
                 );
               }
               return (
-                <>
+                
                   <p
                     className="text-xs text-gray-600 leading-relaxed"
                     key={index}
                   >
                     {x}
                   </p>
-                </>
+          
               );
             })}{" "}
           </div>

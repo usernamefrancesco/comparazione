@@ -1002,6 +1002,8 @@ const MutuoRedesignPart1 = ({ params }: PageProps) =>  {
                           <div className="w-1.5 h-1.5 bg-orange-500 rounded-full flex-shrink-0 mt-2"></div>
                           <span className="text-gray-700 text-sm leading-relaxed">
                             {contro}
+                            <ScoreButton field={contro} onShow={showPopupScore} />
+
                           </span>
                         </div>
                       ))}

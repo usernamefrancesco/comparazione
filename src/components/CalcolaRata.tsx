@@ -1,5 +1,9 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { ArrowLeft } from "lucide-react";
+
+
 
 export default function CalcolaRata() {
   const [calcolatore, setCalcolatore] = useState({
@@ -8,6 +12,7 @@ export default function CalcolaRata() {
     tasso: "% 2,50",
     rata: 395.12,
   });
+  const router = useRouter()
   const [esempioCalc, setEsempioCalc] = useState({
     10: 942.8,
     15: 666.79,
@@ -119,12 +124,19 @@ const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     });
   }
   return (
-    <div className="flex items-center justify-center px-5 mb-5">
+    <div className="flex items-center justify-center px-5 mb-5 mt-6">
   <div className="w-full max-w-5xl bg-white">
+  <button
+          onClick={() => router.push('/')}
+          className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 text-sm mb-6 transition-colors duration-200 hover:bg-white/50   rounded-lg"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Torna alla home
+        </button>
     {/* Header */}
     <div className="mb-4">
       <h1 className="text-3xl font-bold text-gray-900 mb-2">
-        💰 Calcolatore Mutuo
+        💰 Calcolatore Rata
       </h1>
       <p className="text-gray-600">
         Calcola la tua rata mensile in modo semplice e veloce

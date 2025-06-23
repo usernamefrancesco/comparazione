@@ -1,8 +1,8 @@
-// src/app/layout.tsx  (App Router)
+// src/app/layout.tsx
 import "./globals.css";
 import { MutuoProvider } from "@/Context/MutuoContext";
 import { SpeedInsights } from "@vercel/speed-insights/next"
-
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it">
@@ -13,14 +13,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           src="https://gc.zgo.at/count.js"
         ></script>
       </head>
-
       <body>
         <MutuoProvider>
-          {children}
+            <main>
+              {children}
+            </main>
           <SpeedInsights />
         </MutuoProvider>
       </body>
-
     </html>
   );
 }
