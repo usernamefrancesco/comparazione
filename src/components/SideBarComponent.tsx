@@ -13,7 +13,8 @@ import {
   SidebarGroupLabel,
   SidebarMenuButton
 } from "@/components/ui/sidebar";
-import { Calculator, Info, HelpCircle, Mail, Phone } from "lucide-react";
+import { Calculator, Info, ListTodo, Mail, BookOpenText } from "lucide-react";
+import { title } from "process";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -29,15 +30,21 @@ const items = [
     title: 'Calcola Importo',
     url: '/calcola-mutuo',
     icon: Calculator
+  },
+  {
+    title: 'Procedimento Mutuo',
+    url: '/procedimento-mutuo',
+    icon: ListTodo
+  },
+  {
+    title: 'Blog',
+    url: '/blog',
+    icon: BookOpenText
   }
 ]
 
 const footerItems = [
-  {
-    title: 'Aiuto',
-    url: '/aiuto',
-    icon: HelpCircle
-  },
+  
   {
     title: 'Contatti',
     url: '/contatti',
@@ -45,7 +52,7 @@ const footerItems = [
   },
   {
     title: 'Info',
-    url: '/info',
+    url: '/disclaimer',
     icon: Info
   }
 ]
