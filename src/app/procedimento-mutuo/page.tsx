@@ -187,7 +187,7 @@ const MutuoTimeline = () => {
         </Link>
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8 sm:mb-12">
+        <div className=" mb-8 sm:mb-12">
           <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-4">
             🧭 Procedimento Mutuo
           </h1>

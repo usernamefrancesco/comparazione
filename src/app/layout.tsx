@@ -1,23 +1,24 @@
-// src/app/layout.tsx
+import Script from "next/script";
 import "./globals.css";
 import { MutuoProvider } from "@/Context/MutuoContext";
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it">
-      <head>
-        <script
-          data-goatcounter="https://francescomutui.goatcounter.com/"
-          async
-          src="https://gc.zgo.at/count.js"
-        ></script>
-      </head>
+      <head />
       <body>
+        {/* Plausible */}
+        <Script
+          defer
+          data-domain="ipoteko.it"
+          src="https://plausible.io/js/script.js"
+          strategy="afterInteractive"
+        />
+
         <MutuoProvider>
-            <main>
-              {children}
-            </main>
+          <main>{children}</main>
           <SpeedInsights />
         </MutuoProvider>
       </body>
