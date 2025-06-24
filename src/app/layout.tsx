@@ -1,14 +1,24 @@
-import Script from "next/script";
-import "./globals.css";
 import { MutuoProvider } from "@/Context/MutuoContext";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import Script from "next/script";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it">
-      <head />
-      <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17262271115"></script>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17262271115"
+          strategy="afterInteractive"
+          async
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17262271115');
+          `}
+        </Script>
+      </head>
       <body>
         {/* Plausible */}
         <Script
@@ -17,10 +27,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           src="https://plausible.io/js/script.js"
           strategy="afterInteractive"
         />
-
         <MutuoProvider>
           <main>{children}</main>
-          <SpeedInsights />
         </MutuoProvider>
       </body>
     </html>
