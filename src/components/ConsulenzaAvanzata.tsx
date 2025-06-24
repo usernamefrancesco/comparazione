@@ -491,7 +491,7 @@ export default function ConsulenzaAvanzata() {
               <DropdownField
                 label="Tipo di tasso"
                 value={dati.tipoTasso}
-                options={["Fisso", "Variabile", "Misto", "Tutte le tipologie"]}
+                options={["Fisso"]}
                 onChange={(value: string) => {
                   setDati((prev) => ({ ...prev, tipoTasso: value }));
                   setFormData((prev: any) => ({ ...prev, tipoTasso: value }));

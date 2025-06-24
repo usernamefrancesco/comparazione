@@ -65,9 +65,7 @@ export default function ConsulenzaStandard() {
   const durataMutuo = ["30", "25", "20", "15", "10"];
   const tipoTassoOptions = [
     "Fisso",
-    "Variabile",
-    "Misto",
-    "Tutte le tipologie",
+    
   ];
   const classeEnergeticaOptions = ["Si", "No", "Non lo so"];
 

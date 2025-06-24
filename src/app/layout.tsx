@@ -8,6 +8,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="it">
       <head />
+      <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17262271115"></script>
       <body>
         {/* Plausible */}
         <Script
