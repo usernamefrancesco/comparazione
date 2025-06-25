@@ -69,13 +69,10 @@ const MutuoRedesignPart1 = ({ params }: PageProps) => {
   }
 
   const formatLTV = (range: string) => {
-    if (range === "00.00-80.00") {
-      return "0-80";
-    } else if (range === "80.01-95.00") {
-      return "80-95";
-    } else {
-      return "95-100";
-    }
+    const primoNum = range.slice(0,2)
+    const secondoNum = range.slice(6,9).replace('.', '')
+   
+    return `${primoNum}-${secondoNum}`
   };
 
 
