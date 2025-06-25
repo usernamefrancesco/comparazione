@@ -155,7 +155,7 @@ export default function ConsulenzaStandard() {
                   name="valoreImmobile"
                   value={consNormale.valoreImmobile}
                   onChange={handleChangeNumber}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
+                  className="w-full px-4 py-3 b border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
                   placeholder="€ 0"
                 />
               </div>
@@ -177,7 +177,7 @@ export default function ConsulenzaStandard() {
                   name="importoMutuo"
                   value={consNormale.importoMutuo}
                   onChange={handleChangeNumber}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
+                  className="w-full px-4 py-3  border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
                   placeholder="€ 0"
                 />
               </div>
@@ -198,7 +198,7 @@ export default function ConsulenzaStandard() {
                 <button
                   type="button"
                   onClick={() => toggleDropdown("durataMutuo")}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none flex items-center justify-between"
+                  className="w-full px-4 py-3  border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none flex items-center justify-between"
                 >
                   <span>{consNormale.durataMutuo} anni</span>
                   <ChevronDown
@@ -238,7 +238,7 @@ export default function ConsulenzaStandard() {
                 <button
                   type="button"
                   onClick={() => toggleDropdown("tipoTasso")}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none flex items-center justify-between"
+                  className="w-full px-4 py-3  border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none flex items-center justify-between"
                 >
                   <span>{consNormale.tipoTasso}</span>
                   <ChevronDown
@@ -280,7 +280,7 @@ export default function ConsulenzaStandard() {
                   name="reddito"
                   value={consNormale.reddito}
                   onChange={handleChangeNumber}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
+                  className="w-full px-4 py-3  border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none"
                   placeholder="€ 0"
                 />
               </div>
@@ -332,7 +332,7 @@ export default function ConsulenzaStandard() {
                 <button
                   type="button"
                   onClick={() => toggleDropdown("isee")}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none flex items-center justify-between"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none flex items-center justify-between"
                 >
                   <span>{consNormale.isee}</span>
                   <ChevronDown
@@ -374,7 +374,7 @@ export default function ConsulenzaStandard() {
                 <button
                   type="button"
                   onClick={() => toggleDropdown("classeEnergetica")}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none flex items-center justify-between"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-lg font-medium text-gray-900 focus:bg-white focus:border-blue-300 focus:ring-4 focus:ring-blue-50 transition-all duration-200 outline-none flex items-center justify-between"
                 >
                   <span>{consNormale.classeEnergetica}</span>
                   <ChevronDown
