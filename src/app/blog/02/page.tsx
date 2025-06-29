@@ -57,7 +57,7 @@ export default function page() {
         <h1 className="text-2xl font-semibold">
           Mutuo fisso vs mutuo variabile: quale scegliere nel 2025?
         </h1>
-        <p>5 minuti di lettura • Lunedì 29, 2025 </p>
+        <p>5 minuti di lettura • Lunedì 29, 2025</p>
       </div>
 
       <div className="text-lg flex flex-col gap-10">
