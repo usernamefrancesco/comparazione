@@ -1,341 +1,330 @@
 import { Mutuo } from "@/lib/interface"
 
 
-const bancobpm = {
+const profilo = {
     nome: 'Banco BPM',
     img: 'https://www.mutuisupermarket.it/static/e44e010ae740971ec8f2f116ff5be19b/Banco_BPM-1.svg'
 }
 
 export const BancoBPM80su: Mutuo[] = [
+  
   {
-    "id": "mutuo-green-giovani-2025",
-    "banca": bancobpm.nome,
-    "immagineBanca": bancobpm.img,
-    "nomeProdotto": "Mutuo Green Giovani Tasso Fisso",
-  
-    "importoMutuo": 200000,
+    "id": "mutuo-last-minute-green",
+    "banca": profilo.nome,
+    "immagineBanca": profilo.img,
+    "nomeProdotto": "Mutuo Casa Tasso Fisso Last Minute",
+    
+    "importoMutuo": 180000,
     "durataAnni": 25,
-    "rataMensile": 950,
-    "rataTotale": 285000,
-    "tassoScelto": 2.50,
-    "taeg": 2.67,
+    "rataMensile": 800,
+    "rataTotale": 240000,
+    "tassoScelto": 2.35,
+    "taeg": 2.60,
     "tipiTasso": "Fisso",
-    "dataScadenzaOfferta": "2025-06-30T00:00:00.000Z",
-  
+    "dataScadenzaOfferta": null,
+    
     "importoInfo": {
       "importoMax": 250000,
-      "importoMin": 50000
+      "importoMin": 30000
     },
-  
-    "soloClassiAB": true,
-    "soloClassiLista": ["A", "B"],
-  
+    
+    "soloClassiAB": false,
+    "soloClassiLista": [],
+    
     "consap": true,
     "irs": true,
     "isee": true,
-  
+    
     "spesePerizia": {
       "importo": 320,
-      "condizioni": "Obbligatoria e a carico del mutuatario",
+      "condizioni": "Obbligatorio servizio di valutazione con spese a carico del mutuatario",
       "maxImporto": 320
     },
-  
+    
     "speseIstruttoria": {
-      percentualeSuImporto: false ,
-      percentualeApplicata: 0,
-      ltvImporto: false,
-      importoLtv: [],
-      importoMin: 0,
-          importoMax: 0,
+      "percentualeSuImporto": false,
+      "percentualeApplicata": 0,
       "importo": 0,
-      "promozione": "Azzeramento delle spese di istruttoria",
-      "attiva": true
+      "promozione": "Spese di istruttoria azzerate per tutta la durata della promozione",
+      "attiva": true,
+      "importoMax": 0,
+      "importoMin": 0,
+      "ltvImporto": false,
+      "importoLtv": []
     },
-  
+    
     "impostaSostitutiva": {
-      "promozione": true,
-      "importo": 500
+      "promozione": false,
+      "importo": 0.0025
     },
-  
+    
     "incassoRata": {
       "esiste": false,
       "importo": 0
     },
-  
+    
     "costoGestionePratica": {
-      "esiste": false,
-      "importo": 0
+      "esiste": true,
+      "importo": 1.25
     },
-  
+    
     "altriTipiSpese": {
-      "annuali": true,
+      "annuali": false,
       "importo": 15
     },
-  
-    "totaleDaRimborsare": 285000,
-    "totaliCostiExtra": 835,
-  
+    
+    "totaleDaRimborsare": 240320,
+    "totaliCostiExtra": 336.25,
+    
     "assicurazioniObbligatorie": {
       "assicurazioneCasa": true,
       "assicurazioneVita": false,
       "assicurazioneCasaMensile": false,
       "assicurazioneVitaMensile": false,
       "percentualePremioVita": 0,
-      "costoStimatoCasa": 300,
+      "costoStimatoCasa": 200,
       "costoStimatoVita": 0
     },
-  
-    "ltvMutuo": 80.0,
-  
+    
+    "ltvMutuo": 80,
+    
     "eta": {
       "minima": 18,
       "massima": 35,
       "maxUnder36": true
     },
-  
-    "score": 82,
+    
+    "score": 87,
     "rrrMax": 35,
-  
+    
     "tassiPerLTV": {
-      "00.00-80.00": {
-        "10": 0.15,
-        "15": 0.15,
-        "20": 0.15,
-        "25": 0.30,
-        "30": 0.25
-      },
-      "80.01-95.00": {
-        "10": 0.15,
-        "15": 0.15,
-        "20": 0.15,
-        "25": 0.30,
-        "30": 0.25
-      },
-      "95.01-100": {
-        "10": 0.15,
-        "15": 0.15,
-        "20": 0.15,
-        "25": 0.30,
-        "30": 0.25
-      },
+      "00.00-100.00": {
+        "10": 0.35,
+        "15": 0.35,
+        "20": 0.35,
+        "25": 0.50,
+        "30": 0.45
+      }
     },
-  
+    
     "tipiDurata": [10, 15, 20, 25, 30],
-  
+    
     "scontisticheGenerali": {
       "esistono": true,
       "listaSconti": [
-        
         {
-          "causaleSconti": "Miglioramento di almeno due classi energetiche o EP gl, nren inferiore del 30%",
-          "percentualeSconto": 0.10
+          "causaleSconti": "Sconto sullo spread per immobili in classe energetica A o B",
+          "percentualeSconto": 0.2
+        },
+        {
+          "causaleSconti": "Riduzione spread con miglioramento di almeno due classi energetiche o EPgl, nren ridotto del 30%",
+          "percentualeSconto": 0.1
         }
       ]
     },
-  
+    
     "proMutuo": [
       {
-        "titolo": "Tasso competitivo per giovani",
-        "descrizione": "Spread contenuto con possibilità di sconti per efficienza energetica"
+        "titolo": "Accesso al Fondo Consap",
+        "descrizione": "Accesso alla garanzia pubblica gratuita del Fondo Prima Casa per mutui fino all'80% del valore dell'immobile."
       },
       {
-        "titolo": "Zero costi di istruttoria",
-        "descrizione": "Nessuna spesa per apertura pratica"
+        "titolo": "Sconto aggiuntivo per immobili green",
+        "descrizione": "Riduzione dello spread fino a 0,20% per immobili in classe A o B con APE valido."
       },
       {
-        "titolo": "Nessuna penale per estinzione anticipata",
-        "descrizione": "Estinzione gratuita in qualsiasi momento"
+        "titolo": "Spese di istruttoria azzerate",
+        "descrizione": "Il mutuo non prevede costi di istruttoria, riducendo l'esborso iniziale."
       }
     ],
-  
+    
     "controMutuo": [
       {
-        "titolo": "Spese di perizia obbligatorie",
-        "descrizione": "Costo fisso di €320 a carico del richiedente"
+        "titolo": "Limite massimo di importo finanziabile",
+        "descrizione": "Il mutuo non supera i 250.000 €, rendendolo inadatto per immobili di valore più elevato."
       },
       {
-        "titolo": "Vincolo di classe energetica",
-        "descrizione": "Accessibile solo per immobili in classe A o B"
+        "titolo": "Spese di perizia obbligatorie a carico del cliente",
+        "descrizione": "È prevista una spesa fissa per la perizia di 320 € non rimborsabile."
+      },
+      {
+        "titolo": "Costi extra per mancato addebito diretto",
+        "descrizione": "È previsto un costo aggiuntivo di € 1,25 se la rata non viene pagata tramite addebito sul conto dell’istituto."
       }
     ],
-  
+    
     "praticaScore": {
       "pro": [
-        "Tasso IRS + spread competitivo",
-        "Sconto per immobili Green",
-        "Consap inclusa"
+        "Processo semplificato con garanzia Consap",
+        "Sconti concreti per immobili ad alta efficienza energetica"
       ],
       "contro": [
-        "Classe energetica vincolante",
-        "Spese di perizia non incluse"
+        "Limite di età stringente",
+        "Vincolo di classe energetica per sconto massimo"
       ]
     }
   },
+  
+
+
   // 2
   {
-    "id": "bancoBPM-2",
-    "banca": bancobpm.nome,
-    "immagineBanca": bancobpm.img,
-    "nomeProdotto": "Mutuo Giovani Tasso Fisso",
-  
-    "importoMutuo": 200000,
+    "id": "mutuo-last-minute-green",
+    "banca": profilo.nome,
+    "immagineBanca": profilo.img,
+    "nomeProdotto": "Mutuo Casa Tasso Fisso Last Minute GREEN",
+    
+    "importoMutuo": 180000,
     "durataAnni": 25,
-    "rataMensile": 950,
-    "rataTotale": 285000,
-    "tassoScelto": 2.50,
-    "taeg": 2.67,
+    "rataMensile": 800,
+    "rataTotale": 240000,
+    "tassoScelto": 2.35,
+    "taeg": 2.60,
     "tipiTasso": "Fisso",
-    "dataScadenzaOfferta": "2025-06-30T00:00:00.000Z",
-  
+    "dataScadenzaOfferta": "2025-07-31",
+    
     "importoInfo": {
       "importoMax": 250000,
-      "importoMin": 50000
+      "importoMin": 30000
     },
-  
-    "soloClassiAB": false,
+    
+    "soloClassiAB": true,
     "soloClassiLista": ["A", "B"],
-  
+    
     "consap": true,
     "irs": true,
     "isee": true,
-  
+    
     "spesePerizia": {
       "importo": 320,
-      "condizioni": "Obbligatoria e a carico del mutuatario",
+      "condizioni": "Obbligatorio servizio di valutazione con spese a carico del mutuatario",
       "maxImporto": 320
     },
-  
+    
     "speseIstruttoria": {
-      percentualeSuImporto: false ,
-      percentualeApplicata: 0,
-      ltvImporto: false,
-      importoLtv: [],
-      importoMin: 0,
-          importoMax: 0,
+      "percentualeSuImporto": false,
+      "percentualeApplicata": 0,
       "importo": 0,
-      "promozione": "Azzeramento delle spese di istruttoria",
-      "attiva": true
+      "promozione": "Spese di istruttoria azzerate per tutta la durata della promozione",
+      "attiva": true,
+      "importoMax": 0,
+      "importoMin": 0,
+      "ltvImporto": false,
+      "importoLtv": []
     },
-  
+    
     "impostaSostitutiva": {
-      "promozione": true,
-      "importo": 500
+      "promozione": false,
+      "importo": 0.0025
     },
-  
+    
     "incassoRata": {
       "esiste": false,
       "importo": 0
     },
-  
+    
     "costoGestionePratica": {
-      "esiste": false,
-      "importo": 0
+      "esiste": true,
+      "importo": 1.25
     },
-  
+    
     "altriTipiSpese": {
-      "annuali": true,
+      "annuali": false,
       "importo": 15
     },
-  
-    "totaleDaRimborsare": 285000,
-    "totaliCostiExtra": 835,
-  
+    
+    "totaleDaRimborsare": 240320,
+    "totaliCostiExtra": 336.25,
+    
     "assicurazioniObbligatorie": {
       "assicurazioneCasa": true,
       "assicurazioneVita": false,
       "assicurazioneCasaMensile": false,
       "assicurazioneVitaMensile": false,
       "percentualePremioVita": 0,
-      "costoStimatoCasa": 300,
+      "costoStimatoCasa": 200,
       "costoStimatoVita": 0
     },
-  
-    "ltvMutuo": 80.0,
-  
+    
+    "ltvMutuo": 80,
+    
     "eta": {
       "minima": 18,
       "massima": 35,
       "maxUnder36": true
     },
-  
-    "score": 82,
+    
+    "score": 87,
     "rrrMax": 35,
-  
+    
     "tassiPerLTV": {
-      "00.00-80.00": {
-        "10": 0.35,
-        "15": 0.35,
-        "20": 0.35,
-        "25": 0.50,
-        "30": 0.45
-      },
-      "80.01-95.00": {
-        "10": 0.35,
-        "15": 0.35,
-        "20": 0.35,
-        "25": 0.50,
-        "30": 0.45
-      },
-      "95.01-100": {
-        "10": 0.35,
-        "15": 0.35,
-        "20": 0.35,
-        "25": 0.50,
-        "30": 0.45
-      },
+      "00.00-100.00": {
+        "10": 0.15,
+        "15": 0.15,
+        "20": 0.15,
+        "25": 0.30,
+        "30": 0.25
+      }
     },
-  
+    
     "tipiDurata": [10, 15, 20, 25, 30],
-  
+    
     "scontisticheGenerali": {
       "esistono": true,
       "listaSconti": [
-        
         {
-          "causaleSconti": "Miglioramento di almeno due classi energetiche o EP gl, nren inferiore del 30%",
-          "percentualeSconto": 0.10
+          "causaleSconti": "Sconto sullo spread per immobili in classe energetica A o B",
+          "percentualeSconto": 0.2
+        },
+        {
+          "causaleSconti": "Riduzione spread con miglioramento di almeno due classi energetiche o EPgl, nren ridotto del 30%",
+          "percentualeSconto": 0.1
         }
       ]
     },
-  
+    
     "proMutuo": [
       {
-        "titolo": "Tasso competitivo per giovani",
-        "descrizione": "Spread contenuto con possibilità di sconti per efficienza energetica"
+        "titolo": "Accesso al Fondo Consap",
+        "descrizione": "Accesso alla garanzia pubblica gratuita del Fondo Prima Casa per mutui fino all'80% del valore dell'immobile."
       },
       {
-        "titolo": "Zero costi di istruttoria",
-        "descrizione": "Nessuna spesa per apertura pratica"
+        "titolo": "Sconto aggiuntivo per immobili green",
+        "descrizione": "Riduzione dello spread fino a 0,20% per immobili in classe A o B con APE valido."
       },
       {
-        "titolo": "Nessuna penale per estinzione anticipata",
-        "descrizione": "Estinzione gratuita in qualsiasi momento"
+        "titolo": "Spese di istruttoria azzerate",
+        "descrizione": "Il mutuo non prevede costi di istruttoria, riducendo l'esborso iniziale."
       }
     ],
-  
+    
     "controMutuo": [
       {
-        "titolo": "Spese di perizia obbligatorie",
-        "descrizione": "Costo fisso di €320 a carico del richiedente"
+        "titolo": "Limite massimo di importo finanziabile",
+        "descrizione": "Il mutuo non supera i 250.000 €, rendendolo inadatto per immobili di valore più elevato."
       },
       {
-        "titolo": "Vincolo di classe energetica",
-        "descrizione": "Accessibile solo per immobili in classe A o B"
+        "titolo": "Spese di perizia obbligatorie a carico del cliente",
+        "descrizione": "È prevista una spesa fissa per la perizia di 320 € non rimborsabile."
+      },
+      {
+        "titolo": "Costi extra per mancato addebito diretto",
+        "descrizione": "È previsto un costo aggiuntivo di € 1,25 se la rata non viene pagata tramite addebito sul conto dell’istituto."
       }
     ],
-  
+    
     "praticaScore": {
       "pro": [
-        "Tasso IRS + spread competitivo",
-        "Sconto per immobili Green",
-        "Consap inclusa"
+        "Processo semplificato con garanzia Consap",
+        "Sconti concreti per immobili ad alta efficienza energetica"
       ],
       "contro": [
-        "Classe energetica vincolante",
-        "Spese di perizia non incluse"
+        "Limite di età stringente",
+        "Vincolo di classe energetica per sconto massimo"
       ]
     }
   }
+  
   
       
 ]

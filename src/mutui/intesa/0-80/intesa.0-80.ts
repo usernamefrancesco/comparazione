@@ -10,172 +10,203 @@ const profilo = {
 
  export  const mutui80giu: Mutuo[] = [
     
-    {
-        "id": "intesa80-1",
-        "banca":profilo.nome,
-        "immagineBanca": profilo.img,
-        "nomeProdotto": "Mutuo Domus Green Giovani",
-      
-        "importoMutuo": 250000,
-        "durataAnni": 25,
-        "rataMensile": 1200,
-        "rataTotale": 360000,
-        "tassoScelto": 2.54,
-        "taeg": 2.75,
-        "tipiTasso": "Fisso",
-        "dataScadenzaOfferta": "2025-07-31",
-      
-        "importoInfo": {
-          "importoMax": 400000,
-          "importoMin": 30000
-        },
-      
-        "soloClassiAB": true,
-        "soloClassiLista": ["A", "B", "C"],
-      
-        "consap": false,
-        "irs": false,
-        "isee": false,
-      
-        "spesePerizia": {
-          "importo": 320,
-          "condizioni": "Costo per perizia fino a 300.000 € di mutuo",
-          "maxImporto": 320
-        },
-      
-        "speseIstruttoria": {
-          "percentualeSuImporto": false,
-          "percentualeApplicata": 0,
-          ltvImporto: false,
-      importoLtv: [],
-          "importo": 0,
-          "promozione": "Azzeramento spese istruttoria per stipule del mese in corso",
-          "attiva": true,
-          "importoMax": 0,
-          "importoMin": 0
-        },
-      
-        "impostaSostitutiva": {
-          "promozione": true,
-          "importo": 625
-        },
-      
-        "incassoRata": {
-          "esiste": false,
-          "importo": 0
-        },
-      
-        "costoGestionePratica": {
-          "esiste": false,
-          "importo": 0
-        },
-      
-        "altriTipiSpese": {
-          "annuali": false,
-          "importo": 0
-        },
-      
-        "totaleDaRimborsare": 360000,
-        "totaliCostiExtra": 995,
-      
-        "assicurazioniObbligatorie": {
-          "assicurazioneCasa": true,
-          "assicurazioneVita": false,
-          "assicurazioneCasaMensile": false,
-          "assicurazioneVitaMensile": false,
-          "percentualePremioVita": 0,
-          "costoStimatoCasa": 25,
-          "costoStimatoVita": 0
-        },
-      
-        "ltvMutuo": 80,
-      
-        "eta": {
-          "minima": 18,
-          "massima": 35,
-          "maxUnder36": true
-        },
-      
-        "score": 78,
-        "rrrMax": 35,
-      
-        "tassiPerLTV": {
-          "00.00-80.00": {
-            "10": 2.48,
-            "15": 2.52,
-            "20": 2.53,
-            "25": 2.54,
-            "30": 2.54
-          }
-        },
-      
-        "tipiDurata": [10, 15, 20, 25, 30],
-      
-        "scontisticheGenerali": {
-          "esistono": true,
-          "listaSconti": [
-            {
-              "causaleSconti": "Classe A o superiore",
-              "percentualeSconto": 0.10
-            }
-          ]
-        },
-      
-        "proMutuo": [
-          {
-            "titolo": "Tasso fisso promozionale competitivo",
-            "descrizione": "Il mutuo offre tassi fissi inferiori rispetto al mercato per la fascia under 36, permettendo una pianificazione finanziaria sicura e stabile."
-          },
-          {
-            "titolo": "Preammortamento fino a 10 anni",
-            "descrizione": "Possibilità di iniziare con un periodo di soli interessi per agevolare la gestione finanziaria iniziale."
-          }
-        ],
-      
-        "controMutuo": [
-          {
-            "titolo": "Restrizione sull’età",
-            "descrizione": "L’offerta è riservata esclusivamente ai giovani under 36, escludendo un’ampia fascia di potenziali clienti."
-          },
-          {
-            "titolo": "Obbligo di polizza incendio",
-            "descrizione": "La polizza incendio è obbligatoria, limitando la libertà del cliente nella scelta dell’assicurazione."
-          }
-        ],
-      
-        "praticaScore": {
-          "pro": [
-            "Tasso competitivo per giovani",
-            "Preammortamento flessibile",
-            "Spese istruttoria azzerate"
-          ],
-          "contro": [
-            "Vincolo classe energetica immobile",
-            "Obbligo polizza incendio",
-            "Limiti di età stringenti"
-          ]
-        }
+  {
+    "id": "mutuo-green-giovani-fisso-isp",
+    "banca": profilo.nome,
+    "immagineBanca": profilo.img,
+    "nomeProdotto": "Mutuo Domus Green Giovani Tasso Fisso",
+  
+    "importoMutuo": 180000,
+    "durataAnni": 25,
+    "rataMensile": 818.42,
+    "rataTotale": 245526,
+    "tassoScelto": 2.61,
+    "taeg": 2.75,
+    "tipiTasso": "Fisso",
+    "dataScadenzaOfferta": null,
+  
+    "importoInfo": {
+      "importoMax": 400000,
+      "importoMin": 30000
+    },
+  
+    "soloClassiAB": true,
+    "soloClassiLista": ["A", "B", "C"],
+  
+    "consap": false,
+    "irs": false,
+    "isee": false,
+  
+    "spesePerizia": {
+      "importo": 500,
+      "condizioni": "Spesa variabile in base all’importo del mutuo. Es. 320€ fino a 300k, 500€ fino a 500k.",
+      "maxImporto": 890
+    },
+  
+    "speseIstruttoria": {
+      "percentualeSuImporto": false,
+      "percentualeApplicata": 0,
+      "importo": 0,
+      "promozione": "Azzeramento spese d’istruttoria per stipule del mese in corso",
+      "attiva": true,
+      "importoMax": 0,
+      "importoMin": 0,
+      "ltvImporto": false,
+      "importoLtv": []
+    },
+  
+    "impostaSostitutiva": {
+      "promozione": true,
+      "importo": 450
+    },
+  
+    "incassoRata": {
+      "esiste": true,
+      "importo": 0
+    },
+  
+    "costoGestionePratica": {
+      "esiste": false,
+      "importo": 0
+    },
+  
+    "altriTipiSpese": {
+      "annuali": false,
+      "importo": 0
+    },
+  
+    "totaleDaRimborsare": 245526,
+    "totaliCostiExtra": 950,
+  
+    "assicurazioniObbligatorie": {
+      "assicurazioneCasa": true,
+      "assicurazioneVita": false,
+      "assicurazioneCasaMensile": false,
+      "assicurazioneVitaMensile": false,
+      "percentualePremioVita": 0,
+      "costoStimatoCasa": 550,
+      "costoStimatoVita": 0
+    },
+  
+    "ltvMutuo": 75.0,
+  
+    "eta": {
+      "minima": 18,
+      "massima": 76,
+      "maxUnder36": true
+    },
+  
+    "score": 85,
+    "rrrMax": 35,
+  
+    "tassiPerLTV": {
+      "00.00-50.00": {
+        "10": 2.48,
+        "15": 2.52,
+        "20": 2.53,
+        "25": 2.56,
+        "30": 2.57
       },
+      "50.01-70.00": {
+        "10": 2.53,
+        "15": 2.57,
+        "20": 2.58,
+        "25": 2.61,
+        "30": 2.62
+      },
+      "70.01-80.00": {
+        "10": 2.58,
+        "15": 2.58,
+        "20": 2.58,
+        "25": 2.61,
+        "30": 2.62
+      }
+    },
+  
+    "tipiDurata": [10, 15, 20, 25, 30],
+  
+    "scontisticheGenerali": {
+      "esistono": true,
+      "listaSconti": [
+        {
+          "causaleSconti": "Tasso promozionale riservato a immobili green in classe energetica A, B o C",
+          "percentualeSconto": 0.3
+        },
+        {
+          "causaleSconti": "Azzeramento spese incasso rata per under 36",
+          "percentualeSconto": 100
+        },
+        {
+          "causaleSconti": "Azzeramento spese istruttoria per richieste del mese corrente",
+          "percentualeSconto": 100
+        }
+      ]
+    },
+  
+    "proMutuo": [
+      {
+        "titolo": "Tasso promozionale per immobili green",
+        "descrizione": "Accesso a un tasso d’interesse ribassato per immobili ad alta efficienza energetica, con certificazione APE."
+      },
+      {
+        "titolo": "Preammortamento flessibile fino a 10 anni",
+        "descrizione": "Possibilità di preammortamento fino a 10 anni con opzione di interruzione anticipata dopo il primo anno."
+      },
+      {
+        "titolo": "Esenzione spese incasso rata e istruttoria",
+        "descrizione": "Spese incasso rata e istruttoria azzerate per clienti under 36 nel mese corrente."
+      }
+    ],
+  
+    "controMutuo": [
+      {
+        "titolo": "Vincoli stringenti sulla classe energetica",
+        "descrizione": "L’accesso all’offerta è riservato a immobili green con requisiti energetici specifici e documentazione APE valida."
+      },
+      {
+        "titolo": "Esclusione mutuatari over 36",
+        "descrizione": "L’offerta è accessibile solo a chi ha meno di 36 anni alla stipula, escludendo altri potenziali acquirenti."
+      },
+      {
+        "titolo": "Copertura assicurativa obbligatoria",
+        "descrizione": "Obbligo di attivare una polizza incendio, anche se con possibilità di scelta del fornitore, comporta un costo aggiuntivo."
+      }
+    ],
+  
+    "praticaScore": {
+      "pro": [
+        "Tasso fisso competitivo per immobili green",
+        "Promozioni dedicate agli under 36",
+        "Preammortamento fino a 10 anni con flessibilità"
+      ],
+      "contro": [
+        "Requisiti energetici complessi e vincolanti",
+        "Età limitata a meno di 36 anni",
+        "Spese accessorie non totalmente azzerate (es. perizia, assicurazione)"
+      ]
+    }
+  },
+  
 
       // 2bank
+      
       {
-        "id": "intesa80-2",
+        "id": "mutuo-domus-giovani",
         "banca": profilo.nome,
         "immagineBanca": profilo.img,
-        "nomeProdotto": "Mutuo Domus Giovani - Tasso Fisso",
+        "nomeProdotto": "Mutuo Domus Giovani",
       
         "importoMutuo": 200000,
         "durataAnni": 25,
-        "rataMensile": 954.83,
-        "rataTotale": 286449,
-      
-        "tassoScelto": 3.09,
+        "rataMensile": 950,
+        "rataTotale": 285000,
+        "tassoScelto": 3.11,
         "taeg": 3.25,
         "tipiTasso": "Fisso",
-        "dataScadenzaOfferta": "2025-06-30",
+        "dataScadenzaOfferta": null,
       
         "importoInfo": {
-          "importoMax": 1000000,
+          "importoMax": 400000,
           "importoMin": 30000
         },
       
@@ -188,23 +219,41 @@ const profilo = {
       
         "spesePerizia": {
           "importo": 500,
-          "condizioni": "Costo perizia fino a 500.000 €, come da fasce indicate. Include sopralluogo tecnico e relazione.",
+          "condizioni": "Costo perizia fino a 500.000 € di mutuo richiesto",
           "maxImporto": 890
         },
       
         "speseIstruttoria": {
           "percentualeSuImporto": false,
           "percentualeApplicata": 0,
-          "importo": 1050,
-          "promozione": "50% di sconto sulle spese di istruttoria per domande presentate nel mese di Giugno",
+          "importo": 950,
+          "promozione": "Sconto 50% su spese di istruttoria per richieste Mutuo Giovani sottoscritte a giugno",
           "attiva": true,
           "importoMax": 1050,
           "importoMin": 750,
           "ltvImporto": true,
           "importoLtv": [
-            { "ltv": 50.00, "importo": 750 , percentualeApplicata: 0,importoMax: 0 , importoMin:0},
-            { "ltv": 70.00, "importo": 950 , percentualeApplicata: 0,importoMax: 0 , importoMin:0},
-            { "ltv": 80.00, "importo": 1050 , percentualeApplicata: 0,importoMax: 0 , importoMin:0}
+            {
+              "ltv": 50,
+              "importo": 750,
+              "percentualeApplicata": 0,
+              "importoMax": 750,
+              "importoMin": 750
+            },
+            {
+              "ltv": 70,
+              "importo": 950,
+              "percentualeApplicata": 0,
+              "importoMax": 950,
+              "importoMin": 950
+            },
+            {
+              "ltv": 80,
+              "importo": 1050,
+              "percentualeApplicata": 0,
+              "importoMax": 1050,
+              "importoMin": 1050
+            }
           ]
         },
       
@@ -214,7 +263,7 @@ const profilo = {
         },
       
         "incassoRata": {
-          "esiste": false,
+          "esiste": true,
           "importo": 0
         },
       
@@ -225,310 +274,115 @@ const profilo = {
       
         "altriTipiSpese": {
           "annuali": true,
-          "importo": 50
+          "importo": 30
         },
       
-        "totaleDaRimborsare": 286449,
-        "totaliCostiExtra": 1600,
+        "totaleDaRimborsare": 285000,
+        "totaliCostiExtra": 1480,
       
         "assicurazioniObbligatorie": {
-          "assicurazioneCasa": true,
+          "assicurazioneCasa": false,
           "assicurazioneVita": false,
           "assicurazioneCasaMensile": false,
           "assicurazioneVitaMensile": false,
           "percentualePremioVita": 0,
-          "costoStimatoCasa": 450,
+          "costoStimatoCasa": 300,
           "costoStimatoVita": 0
         },
       
-        "ltvMutuo": 80.0,
+        "ltvMutuo": 75,
       
         "eta": {
           "minima": 18,
-          "massima": 66,
+          "massima": 76,
           "maxUnder36": true
         },
       
-        "score": 87,
-        "rrrMax": 40,
+        "score": 85,
+        "rrrMax": 35,
       
         "tassiPerLTV": {
           "00.00-50.00": {
             "10": 2.98,
             "15": 3.02,
             "20": 3.03,
-            "25": 3.04,
-            "30": 3.04
+            "25": 3.06,
+            "30": 3.07
           },
           "50.01-70.00": {
             "10": 3.03,
             "15": 3.07,
             "20": 3.08,
-            "25": 3.09,
-            "30": 3.09
+            "25": 3.11,
+            "30": 3.12
           },
           "70.01-80.00": {
             "10": 3.08,
             "15": 3.08,
             "20": 3.08,
-            "25": 3.09,
-            "30": 3.09
+            "25": 3.11,
+            "30": 3.12
           }
         },
       
         "tipiDurata": [10, 15, 20, 25, 30],
       
         "scontisticheGenerali": {
-          "esistono": false,
-          "listaSconti": []
-        },
-      
-        "proMutuo": [
-          {
-            "titolo": "Tassi agevolati per Under 36",
-            "descrizione": "Condizioni promozionali dedicate ai giovani fino a 36 anni non compiuti con finalità prima casa."
-          },
-          {
-            "titolo": "Possibilità di preammortamento fino a 10 anni",
-            "descrizione": "Flessibilità nella fase iniziale del piano di rimborso, anche con possibilità di interrompere anticipatamente il preammortamento."
-          },
-          {
-            "titolo": "Sconto sulle spese di istruttoria",
-            "descrizione": "Per richieste nel mese corrente è previsto uno sconto del 50% sulle spese di istruttoria."
-          },
-          {
-            "titolo": "Ampia personalizzazione del piano di ammortamento",
-            "descrizione": "Disponibile il piano Base Light, con opzioni di flessibilità adattabili alle esigenze del cliente."
-          }
-        ],
-      
-        "controMutuo": [
-          {
-            "titolo": "Importo massimo vincolato per lavoratori atipici",
-            "descrizione": "In caso di contratti atipici, l'importo massimo erogabile è limitato a 400.000 euro."
-          },
-          {
-            "titolo": "Assicurazione incendio obbligatoria solo se stipulata con la banca",
-            "descrizione": "La polizza deve essere vincolata alla banca o stipulata tramite i canali indicati, limitando la libertà di scelta."
-          },
-          {
-            "titolo": "Previsione di spese perizia elevate",
-            "descrizione": "Le spese di perizia possono arrivare fino a 890 €, impattando i costi iniziali."
-          },
-          {
-            "titolo": "LTV massimo limitato all’80%",
-            "descrizione": "Non consente il finanziamento oltre l’80% del valore immobile, riducendo l’accessibilità per chi ha bassa liquidità iniziale."
-          }
-        ],
-      
-        "praticaScore": {
-          "pro": [
-            "Condizioni dedicate agli under 36",
-            "Sconto sulle spese di istruttoria",
-            "Piano Base Light flessibile",
-            "Tasso fisso garantito"
-          ],
-          "contro": [
-            "LTV massimo 80%",
-            "Costi perizia elevati in alcune fasce",
-            "Vincolo assicurativo incendio con banca",
-            "Importo limitato per lavoratori atipici"
-          ]
-        }
-      },
-      {
-        "id": "mutuo-green-superflash",
-        "banca": profilo.nome,
-        "immagineBanca": profilo.img,
-        "nomeProdotto": "Mutuo Domus Green Offerta Superflash",
-      
-        "importoMutuo": 180000,
-        "durataAnni": 25,
-        "rataMensile": 816.87,
-        "rataTotale": 245061,
-        "tassoScelto": 2.59,
-        "taeg": 2.71,
-        "tipiTasso": "Fisso",
-        "dataScadenzaOfferta": null,
-      
-        "importoInfo": {
-          "importoMax": 400000,
-          "importoMin": 30000
-        },
-      
-        "soloClassiAB": false,
-        "soloClassiLista": [],
-      
-        "consap": true,
-        "irs": false,
-        "isee": true,
-      
-        "spesePerizia": {
-          "importo": 320,
-          "condizioni": "Recupero costi perizia effettuata da tecnico incaricato dalla banca",
-          "maxImporto": 320
-        },
-      
-        "speseIstruttoria": {
-          "percentualeSuImporto": false,
-          "percentualeApplicata": 0,
-          "importo": 0,
-          "promozione": "Istruttoria gratuita con Offerta Superflash",
-          "attiva": true,
-          "importoMax": 0,
-          "importoMin": 0,
-          "ltvImporto": false,
-          "importoLtv": []
-        },
-      
-        "impostaSostitutiva": {
-          "promozione": false,
-          "importo": 350
-        },
-      
-        "incassoRata": {
-          "esiste": false,
-          "importo": 0
-        },
-      
-        "costoGestionePratica": {
-          "esiste": false,
-          "importo": 0
-        },
-      
-        "altriTipiSpese": {
-          "annuali": false,
-          "importo": 0
-        },
-      
-        "totaleDaRimborsare": 245411,
-        "totaliCostiExtra": 670.05,
-      
-        "assicurazioniObbligatorie": {
-          "assicurazioneCasa": true,
-          "assicurazioneVita": false,
-          "assicurazioneCasaMensile": false,
-          "assicurazioneVitaMensile": false,
-          "percentualePremioVita": 0,
-          "costoStimatoCasa": 652.05,
-          "costoStimatoVita": 0
-        },
-      
-        "ltvMutuo": 90,
-      
-        "eta": {
-          "minima": 18,
-          "massima": 75,
-          "maxUnder36": true
-        },
-      
-        "score": 88,
-        "rrrMax": 35,
-      
-        "tassiPerLTV": {
-          "00.00-50.00": {
-            "10": 2.48,
-            "15": 2.52,
-            "20": 2.53,
-            "30": 2.54,
-            "35": 2.84,
-            "40": 2.79
-          },
-          "50.01-70.00": {
-            "10": 2.53,
-            "15": 2.57,
-            "20": 2.58,
-            "30": 2.59,
-            "35": 2.89,
-            "40": 2.84
-          },
-          "70.01-80.00": {
-            "20": 2.58,
-            "30": 2.59,
-            "35": 2.89,
-            "40": 2.84
-          },
-          "80.01-95.00": {
-            "20": 3.03,
-            "30": 3.04,
-            "35": 3.69,
-            "40": 3.64
-          },
-          "95.01-100": {
-            "20": 3.63,
-            "30": 3.64,
-            "35": 3.69,
-            "40": 3.64
-          }
-        },
-      
-        "tipiDurata": [10, 15, 20, 25, 30, 35, 40],
-      
-        "scontisticheGenerali": {
           "esistono": true,
           "listaSconti": [
             {
-              "causaleSconti": "Sconto su spese ricorrenti per promozione Offerta Superflash",
-              "percentualeSconto": 100
-            },
-            {
-              "causaleSconti": "Istruttoria gratuita con Offerta Superflash",
-              "percentualeSconto": 100
+              "causaleSconti": "Sconto 50% spese istruttoria per richieste sottoscritte a giugno con finalità prima casa",
+              "percentualeSconto": 50
             }
           ]
         },
       
         "proMutuo": [
           {
-            "titolo": "Finanziamento fino al 100%",
-            "descrizione": "Copertura fino al 100% del valore immobile per acquisto prima casa"
+            "titolo": "Tassi promozionali riservati agli under 36",
+            "descrizione": "Tassi fissi inferiori a quelli di mercato per clienti giovani con finalità prima casa"
           },
           {
-            "titolo": "Tasso Fisso competitivo",
-            "descrizione": "Tasso fisso a partire dal 2,48% anche su LTV elevati"
+            "titolo": "Possibilità di preammortamento fino a 10 anni",
+            "descrizione": "Flessibilità nei primi anni per adattarsi a situazioni lavorative instabili o temporanee"
           },
           {
-            "titolo": "Opzioni flessibilità gratuite",
-            "descrizione": "Include gratuitamente sospensione rate e flessibilità della durata"
-          },
-          {
-            "titolo": "Nessun costo ricorrente",
-            "descrizione": "Zero spese ricorrenti grazie alla promozione Offerta Superflash"
+            "titolo": "Ampia modularità del piano di ammortamento",
+            "descrizione": "Scelta tra piano base o light per ottimizzare la gestione finanziaria"
           }
         ],
       
         "controMutuo": [
           {
-            "titolo": "Erogazione lenta",
-            "descrizione": "Tempi medi di erogazione molto lunghi: fino a 88 giorni"
+            "titolo": "Tassi non cumulabili con altre agevolazioni",
+            "descrizione": "Non compatibile con altre forme di sconto o benefici statali"
           },
           {
-            "titolo": "Assicurazione obbligatoria vincolata",
-            "descrizione": "Polizza incendio obbligatoria vincolata alla banca, con possibili costi elevati"
+            "titolo": "Assicurazione incendio obbligatoria vincolata",
+            "descrizione": "La polizza deve essere vincolata alla banca anche se stipulata con terze compagnie"
           },
           {
-            "titolo": "Limiti d’età restrittivi",
-            "descrizione": "Riservato esclusivamente agli under 36 e con età massima 75 anni alla scadenza"
-          },
-          {
-            "titolo": "Vincoli per offerta green",
-            "descrizione": "Requisiti stringenti su efficienza energetica per accedere alle condizioni agevolate"
+            "titolo": "Sconto istruttoria solo in specifici mesi",
+            "descrizione": "Le promozioni non sono sempre disponibili e possono variare mensilmente"
           }
         ],
       
         "praticaScore": {
           "pro": [
-            "Fino al 100% LTV su prima casa",
-            "Zero spese istruttoria e gestione",
-            "Durata flessibile fino a 40 anni"
+            "Tasso fisso promozionale inferiore al 3,1%",
+            "Nessun costo per incasso rata",
+            "Possibilità di preammortamento con flessibilità attivabile dopo 12 mesi"
           ],
           "contro": [
-            "Tempi di delibera lunghi",
-            "Offerta riservata a soggetti con ISEE < 40.000 €",
-            "Tasso vantaggioso solo su immobili con alte classi energetiche"
+            "Spese perizia elevate per mutui oltre i 500.000 €",
+            "Sconti limitati a specifiche finestre promozionali",
+            "Assicurazione incendio obbligatoria anche se stipulata esternamente"
           ]
         }
-      }
+      },
+
+      
+      
       
       
       

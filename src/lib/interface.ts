@@ -131,6 +131,9 @@ export interface Mutuo {
     "50.01-60.00"?: {
       [anni: number]: number;
     };
+    "00.00-100.00"?: {
+      [anni: number]: number;
+    };
     
   };
 

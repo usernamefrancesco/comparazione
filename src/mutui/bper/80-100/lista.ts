@@ -29,7 +29,7 @@ export const bperMutui80su: Mutuo[] = [
         "soloClassiAB": true,
         "soloClassiLista": ["A", "B", "C"],
       
-        "consap": true,
+        "consap": false,
         "irs": false,
         "isee": true,
       
@@ -89,7 +89,7 @@ export const bperMutui80su: Mutuo[] = [
         "eta": {
           "minima": 18,
           "massima": 78,
-          "maxUnder36": true
+          "maxUnder36": false
         },
       
         "score": 82,
@@ -266,14 +266,7 @@ export const bperMutui80su: Mutuo[] = [
         "rrrMax": 33,
       
         "tassiPerLTV": {
-          "00.00-80.00": {
-            "5": 3.10,
-            "10": 3.10,
-            "15": 3.10,
-            "20": 3.10,
-            "25": 3.10,
-            "30": 3.10
-          },
+          
           "80.01-95.00": {
             "5": 3.10,
             "10": 3.10,

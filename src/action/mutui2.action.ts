@@ -481,20 +481,23 @@ export async function consulenzaStandard(dati: FormDataBasic) {
 
     // 4. FILTRO MUTUI DISPONIBILI
     const listaFiltrata = listaMutui.filter((mutuo) => {
-      const etaValida = parsedData.eta ? mutuo : !mutuo.eta.maxUnder36;
-
+      const etaValida = mutuo.eta.maxUnder36 ? parsedData.eta : true
+        
       const classeEnergeticaValida =
         dati.classeEnergetica === "Non lo so" ||
         dati.classeEnergetica === "Si" ||
         !mutuo.soloClassiAB;
 
-      const isee = dati.isee === "Si" ? !mutuo.isee : mutuo;
+        
+      const scadenzaData = !mutuo.dataScadenzaOfferta || new Date() <= new Date(mutuo.dataScadenzaOfferta) 
+        
+      
+      const iseeValido = !mutuo.isee || dati.isee === 'No' || dati.isee === 'Non lo so';
 
-      const importoValidatiom =
-        parsedData.importoMutuo >= mutuo.importoInfo.importoMin &&
-        parsedData.importoMutuo <= mutuo.importoInfo.importoMax;
 
-      return classeEnergeticaValida && etaValida && isee && importoValidatiom;
+      const importoValidatiom = parsedData.importoMutuo >= mutuo.importoInfo.importoMin && parsedData.importoMutuo <=  mutuo.importoInfo.importoMax 
+
+      return etaValida && classeEnergeticaValida && iseeValido && importoValidatiom && scadenzaData;
     });
 
     if (listaFiltrata.length === 0) {

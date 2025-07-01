@@ -709,12 +709,17 @@ export async function consulenzaAvanzata(dati:  typeConsulenzaAvanzata) {
         dati.classeEnergetica === "Non lo so" ||
         dati.classeEnergetica === "Si" ||
         !mutuo.soloClassiAB;
+
+        
+      const scadenzaData = !mutuo.dataScadenzaOfferta || new Date() <= new Date(mutuo.dataScadenzaOfferta) 
+        
       
-      const isee = dati.isee === 'Si' ? !mutuo.isee  : mutuo
+      const iseeValido = !mutuo.isee || dati.isee === 'No' || dati.isee === 'Non lo so';
+
 
       const importoValidatiom = parsedData.importoMutuo >= mutuo.importoInfo.importoMin && parsedData.importoMutuo <=  mutuo.importoInfo.importoMax 
 
-      return etaValida && classeEnergeticaValida && isee && importoValidatiom;
+      return etaValida && classeEnergeticaValida && iseeValido && importoValidatiom && scadenzaData;
     });
 
     if (listaFiltrata.length === 0) {

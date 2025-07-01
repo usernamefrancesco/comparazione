@@ -5,86 +5,266 @@ const profilo = {
     img: 'https://www.mutuisupermarket.it/static/e44e010ae740971ec8f2f116ff5be19b/Banco_BPM-1.svg'
 }
 export const bancoBPM80giu: Mutuo[] = [
-    {
-        "id": "mutuo_green_fisso_001",
+  {
+    "id": "mutuo-green-01",
+    "banca": profilo.nome,
+    "immagineBanca": profilo.img,
+    "nomeProdotto": "Mutuo Casa Tasso Fisso Last Minute GREEN",
+  
+    "importoMutuo": 180000,
+    "durataAnni": 25,
+    "rataMensile": 885.30,
+    "rataTotale": 265590,
+  
+    "tassoScelto": 2.30,
+    "taeg": 2.52,
+    "tipiTasso": "Fisso",
+    "dataScadenzaOfferta": "2025-09-30",
+  
+    "importoInfo": {
+      "importoMax": 400000,
+      "importoMin": 50000
+    },
+  
+    "soloClassiAB": true,
+    "soloClassiLista": ["A", "B"],
+  
+    "consap": false,
+    "irs": true,
+    "isee": false,
+  
+    "spesePerizia": {
+      "importo": 320,
+      "condizioni": "Obbligatoria perizia con costo a carico del mutuatario",
+      "maxImporto": 320
+    },
+  
+    "speseIstruttoria": {
+      "percentualeSuImporto": true,
+      "percentualeApplicata": 0.01,
+      "importo": 1000,
+      "promozione": "",
+      "attiva": false,
+      "importoMax": 1000,
+      "importoMin": 0,
+      "ltvImporto": false,
+      "importoLtv": []
+    },
+  
+    "impostaSostitutiva": {
+      "promozione": false,
+      "importo": 450
+    },
+  
+    "incassoRata": {
+      "esiste": true,
+      "importo": 2
+    },
+  
+    "costoGestionePratica": {
+      "esiste": false,
+      "importo": 0
+    },
+  
+    "altriTipiSpese": {
+      "annuali": true,
+      "importo": 15
+    },
+  
+    "totaleDaRimborsare": 265590,
+    "totaliCostiExtra": 1785,
+  
+    "assicurazioniObbligatorie": {
+      "assicurazioneCasa": true,
+      "assicurazioneVita": false,
+      "assicurazioneCasaMensile": false,
+      "assicurazioneVitaMensile": false,
+      "percentualePremioVita": 0,
+      "costoStimatoCasa": 300,
+      "costoStimatoVita": 0
+    },
+  
+    "ltvMutuo": 80.00,
+  
+    "eta": {
+      "minima": 18,
+      "massima": 80,
+      "maxUnder36": false
+    },
+  
+    "score": 87,
+    "rrrMax": 35,
+  
+    "tassiPerLTV": {
+      "00.00-70.00": {
+        "10": 0.10,
+        "15": 0.10,
+        "20": 0.10,
+        "25": 0.10,
+        "30": 0.20
+      },
+      "70.01-80.00": {
+        "10": 0.15,
+        "15": 0.15,
+        "20": 0.15,
+        "25": 0.15,
+        "30": 0.25
+      }
+    },
+  
+    "tipiDurata": [10, 15, 20, 25, 30],
+  
+    "scontisticheGenerali": {
+      "esistono": true,
+      "listaSconti": [
+        {
+          "causaleSconti": "Riduzione 0,20% per immobile in classe A o B",
+          "percentualeSconto": 0.20
+        },
+        {
+          "causaleSconti": "Ulteriore sconto 0,10% per miglioramento energetico documentato",
+          "percentualeSconto": 0.10
+        },
+        {
+          "causaleSconti": "Sconto 0,05% per richiedenti under 45",
+          "percentualeSconto": 0.05
+        }
+      ]
+    },
+  
+    "proMutuo": [
+      {
+        "titolo": "Sconti importanti per immobili green",
+        "descrizione": "La riduzione dello spread rende il mutuo tra i più competitivi sul mercato per immobili classe A o B."
+      },
+      {
+        "titolo": "Durata fino a 30 anni",
+        "descrizione": "Ampia possibilità di dilazione, utile per contenere la rata."
+      }
+    ],
+  
+    "controMutuo": [
+      {
+        "titolo": "Accesso limitato a classi energetiche",
+        "descrizione": "L’offerta è disponibile solo per immobili in classe A o B, escludendo la maggior parte degli immobili esistenti."
+      },
+      {
+        "titolo": "Perizia obbligatoria a carico del cliente",
+        "descrizione": "Costi iniziali non trascurabili per l’accesso al mutuo."
+      }
+    ],
+  
+    "praticaScore": {
+      "pro": [
+        "Sconti cumulabili per classe A/B, miglioramento energetico e giovani",
+        "Tasso competitivo rispetto alla media di mercato"
+      ],
+      "contro": [
+        "Offerta esclusiva e vincolata alla classe energetica",
+        "Perizia e costi accessori a carico del cliente"
+      ]
+    }
+  },  
+
+
+      // 2 bank
+      {
+        "id": "mutuo-standard-01",
         "banca": profilo.nome,
         "immagineBanca": profilo.img,
-        "nomeProdotto": "Mutuo Casa Tasso Fisso Green Last Minute",
+        "nomeProdotto": "Mutuo Casa Tasso Fisso Standard",
+      
         "importoMutuo": 180000,
         "durataAnni": 25,
-        "rataMensile": 820,
-        "rataTotale": 246000,
-        "tassoScelto": 0.45,
-        "taeg": 0.65,
+        "rataMensile": 905.60,
+        "rataTotale": 271680,
+      
+        "tassoScelto": 2.60,
+        "taeg": 2.80,
         "tipiTasso": "Fisso",
-        "dataScadenzaOfferta": "2025-06-30",
+        "dataScadenzaOfferta": "2025-09-30",
+      
         "importoInfo": {
           "importoMax": 400000,
           "importoMin": 50000
         },
+      
         "soloClassiAB": false,
         "soloClassiLista": [],
+      
         "consap": false,
         "irs": true,
         "isee": false,
+      
         "spesePerizia": {
           "importo": 320,
-          "condizioni": "Valutazione obbligatoria a carico del mutuatario",
+          "condizioni": "Obbligatoria perizia con costo a carico del mutuatario",
           "maxImporto": 320
         },
+      
         "speseIstruttoria": {
           "percentualeSuImporto": true,
           "percentualeApplicata": 0.01,
           "importo": 1000,
-          "promozione": "Istruttoria scontata a massimo 1000 euro",
-          "attiva": true,
+          "promozione": "",
+          "attiva": false,
           "importoMax": 1000,
           "importoMin": 0,
           "ltvImporto": false,
           "importoLtv": []
         },
+      
         "impostaSostitutiva": {
-          "promozione": true,
+          "promozione": false,
           "importo": 450
         },
+      
         "incassoRata": {
           "esiste": true,
           "importo": 2
         },
+      
         "costoGestionePratica": {
           "esiste": false,
           "importo": 0
         },
+      
         "altriTipiSpese": {
-          "annuali": false,
-          "importo": 0
+          "annuali": true,
+          "importo": 15
         },
-        "totaleDaRimborsare": 246000,
+      
+        "totaleDaRimborsare": 271680,
         "totaliCostiExtra": 1785,
+      
         "assicurazioniObbligatorie": {
           "assicurazioneCasa": true,
           "assicurazioneVita": false,
           "assicurazioneCasaMensile": false,
           "assicurazioneVitaMensile": false,
           "percentualePremioVita": 0,
-          "costoStimatoCasa": 250,
+          "costoStimatoCasa": 300,
           "costoStimatoVita": 0
         },
-        "ltvMutuo": 80,
+      
+        "ltvMutuo": 80.00,
+      
         "eta": {
           "minima": 18,
           "massima": 80,
-          "maxUnder36": false
+          "maxUnder36": true
         },
-        "score": 8.3,
+      
+        "score": 82,
         "rrrMax": 35,
+      
         "tassiPerLTV": {
           "00.00-70.00": {
-            "10": 0.3,
-            "15": 0.3,
-            "20": 0.3,
-            "25": 0.3,
-            "30": 0.4
+            "10": 0.30,
+            "15": 0.30,
+            "20": 0.30,
+            "25": 0.30,
+            "30": 0.40
           },
           "70.01-80.00": {
             "10": 0.35,
@@ -94,211 +274,53 @@ export const bancoBPM80giu: Mutuo[] = [
             "30": 0.45
           }
         },
+      
         "tipiDurata": [10, 15, 20, 25, 30],
+      
         "scontisticheGenerali": {
           "esistono": true,
           "listaSconti": [
             {
-              "causaleSconti": "Sconto Green per immobili in classe A o B",
-              "percentualeSconto": 0.2
-            },
-            {
-              "causaleSconti": "Sconto giovani under 45",
+              "causaleSconti": "Sconto 0,05% per richiedenti under 45",
               "percentualeSconto": 0.05
-            },
-            {
-              "causaleSconti": "Green Factor: miglioramento di due classi energetiche",
-              "percentualeSconto": 0.1
             }
           ]
         },
+      
         "proMutuo": [
           {
-            "titolo": "Sconto per immobili efficienti",
-            "descrizione": "Accesso a spread ridotto del 0,20% per immobili in classe A o B"
+            "titolo": "Durata fino a 30 anni",
+            "descrizione": "Offerta flessibile anche per chi cerca rate contenute nel lungo periodo."
           },
           {
-            "titolo": "Possibilità di sconto post erogazione",
-            "descrizione": "Riduzione ulteriore dello spread se si migliora la classe energetica dell'immobile"
-          },
-          {
-            "titolo": "Spread competitivo anche ad LTV 80%",
-            "descrizione": "Lo spread rimane contenuto fino all’80% di finanziamento"
+            "titolo": "Spread stabile e trasparente",
+            "descrizione": "Lo spread viene calcolato in base all'LTV e alla durata in modo chiaro."
           }
         ],
+      
         "controMutuo": [
           {
-            "titolo": "Obbligo perizia a carico del cliente",
-            "descrizione": "Il mutuatario deve sostenere il costo della perizia di 320 €"
+            "titolo": "Nessuna agevolazione per classi energetiche elevate",
+            "descrizione": "Chi ha immobili efficienti non ottiene sconti rispetto al mutuo GREEN."
           },
           {
-            "titolo": "Assicurazione casa obbligatoria vincolata",
-            "descrizione": "È obbligatorio presentare copertura incendio con vincolo alla banca"
-          },
-          {
-            "titolo": "Nessuna agevolazione per immobili non green",
-            "descrizione": "Senza immobili in classe A o B, non si accede alle migliori condizioni"
+            "titolo": "Costi iniziali a carico del cliente",
+            "descrizione": "Tra perizia, istruttoria e imposta, le spese iniziali sono significative."
           }
         ],
+      
         "praticaScore": {
           "pro": [
-            "Accessibile anche a chi ha LTV elevato",
-            "Diversi sconti cumulabili sullo spread"
+            "Disponibile anche per immobili in classi energetiche inferiori",
+            "Tasso fisso con spread predefinito"
           ],
           "contro": [
-            "Spese iniziali relativamente elevate",
-            "Assicurazioni e costi accessori a carico del cliente"
+            "Nessun incentivo green",
+            "Costi accessori rilevanti"
           ]
         }
-      },
-
-
-      // 2 bank
-      {
-        "id": "mutuo_green_fisso_001",
-        "banca": profilo.nome,
-        "immagineBanca": profilo.img,
-        "nomeProdotto": "Mutuo Casa Tasso Fisso Green Last Minute",
-        "importoMutuo": 180000,
-        "durataAnni": 25,
-        "rataMensile": 820,
-        "rataTotale": 246000,
-        "tassoScelto": 0.45,
-        "taeg": 0.65,
-        "tipiTasso": "Fisso",
-        "dataScadenzaOfferta": "2025-06-30",
-        "importoInfo": {
-          "importoMax": 400000,
-          "importoMin": 50000
-        },
-        "soloClassiAB": true,
-        "soloClassiLista": ['A', 'B'],
-        "consap": false,
-        "irs": true,
-        "isee": false,
-        "spesePerizia": {
-          "importo": 320,
-          "condizioni": "Valutazione obbligatoria a carico del mutuatario",
-          "maxImporto": 320
-        },
-        "speseIstruttoria": {
-          "percentualeSuImporto": true,
-          "percentualeApplicata": 0.01,
-          "importo": 1000,
-          "promozione": "Istruttoria scontata a massimo 1000 euro",
-          "attiva": true,
-          "importoMax": 1000,
-          "importoMin": 0,
-          "ltvImporto": false,
-          "importoLtv": []
-        },
-        "impostaSostitutiva": {
-          "promozione": true,
-          "importo": 450
-        },
-        "incassoRata": {
-          "esiste": true,
-          "importo": 2
-        },
-        "costoGestionePratica": {
-          "esiste": false,
-          "importo": 0
-        },
-        "altriTipiSpese": {
-          "annuali": false,
-          "importo": 0
-        },
-        "totaleDaRimborsare": 246000,
-        "totaliCostiExtra": 1785,
-        "assicurazioniObbligatorie": {
-          "assicurazioneCasa": true,
-          "assicurazioneVita": false,
-          "assicurazioneCasaMensile": false,
-          "assicurazioneVitaMensile": false,
-          "percentualePremioVita": 0,
-          "costoStimatoCasa": 250,
-          "costoStimatoVita": 0
-        },
-        "ltvMutuo": 80,
-        "eta": {
-          "minima": 18,
-          "massima": 80,
-          "maxUnder36": false
-        },
-        "score": 8.3,
-        "rrrMax": 35,
-        "tassiPerLTV": {
-          "00.00-70.00": {
-            "10": 0.10,
-            "15": 0.10,
-            "20": 0.1,
-            "25": 0.1,
-            "30": 0.2
-          },
-          "70.01-80.00": {
-            "10": 0.15,
-            "15": 0.15,
-            "20": 0.15,
-            "25": 0.15,
-            "30": 0.25
-          }
-        },
-        "tipiDurata": [10, 15, 20, 25, 30],
-        "scontisticheGenerali": {
-          "esistono": true,
-          "listaSconti": [
-            {
-              "causaleSconti": "Sconto Green per immobili in classe A o B",
-              "percentualeSconto": 0.2
-            },
-            {
-              "causaleSconti": "Sconto giovani under 45",
-              "percentualeSconto": 0.05
-            },
-            {
-              "causaleSconti": "Green Factor: miglioramento di due classi energetiche",
-              "percentualeSconto": 0.1
-            }
-          ]
-        },
-        "proMutuo": [
-          {
-            "titolo": "Sconto per immobili efficienti",
-            "descrizione": "Accesso a spread ridotto del 0,20% per immobili in classe A o B"
-          },
-          {
-            "titolo": "Possibilità di sconto post erogazione",
-            "descrizione": "Riduzione ulteriore dello spread se si migliora la classe energetica dell'immobile"
-          },
-          {
-            "titolo": "Spread competitivo anche ad LTV 80%",
-            "descrizione": "Lo spread rimane contenuto fino all’80% di finanziamento"
-          }
-        ],
-        "controMutuo": [
-          {
-            "titolo": "Obbligo perizia a carico del cliente",
-            "descrizione": "Il mutuatario deve sostenere il costo della perizia di 320 €"
-          },
-          {
-            "titolo": "Assicurazione casa obbligatoria vincolata",
-            "descrizione": "È obbligatorio presentare copertura incendio con vincolo alla banca"
-          },
-          {
-            "titolo": "Nessuna agevolazione per immobili non green",
-            "descrizione": "Senza immobili in classe A o B, non si accede alle migliori condizioni"
-          }
-        ],
-        "praticaScore": {
-          "pro": [
-            "Accessibile anche a chi ha LTV elevato",
-            "Diversi sconti cumulabili sullo spread"
-          ],
-          "contro": [
-            "Spese iniziali relativamente elevate",
-            "Assicurazioni e costi accessori a carico del cliente"
-          ]
-        }
-      },
+      }
+      
+      
       
 ]
